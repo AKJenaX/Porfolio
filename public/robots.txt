@@ -1,0 +1,7 @@
+# robots.txt — Anup Kumar Jena Portfolio
+# https://your-domain.com
+
+User-agent: *
+Allow: /
+
+Sitemap: https://your-domain.com/sitemap.xml

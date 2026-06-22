@@ -147,7 +147,7 @@ function Projects() {
                     <a
                       href="https://github.com/AKJenaX?tab=repositories"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="inline-flex min-h-10 items-center gap-2 bg-[#3671C6] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#4784da] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD700]"
                     >
                       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
