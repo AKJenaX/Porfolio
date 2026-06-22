@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import useReveal from '../hooks/useReveal'
 
 const projects = [
   {
@@ -60,38 +60,14 @@ const projects = [
 ]
 
 function Projects() {
-  const sectionRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section || !('IntersectionObserver' in window)) {
-      setIsVisible(true)
-      return undefined
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -60px' },
-    )
-
-    observer.observe(section)
-
-    return () => observer.disconnect()
-  }, [])
+  const [sectionRef, isVisible] = useReveal(0.12)
 
   return (
     <section
       ref={sectionRef}
       id="projects"
       aria-labelledby="projects-heading"
-      className={`relative isolate overflow-hidden bg-[#0a0a1a] px-5 py-20 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
+      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#0a0a1a] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >

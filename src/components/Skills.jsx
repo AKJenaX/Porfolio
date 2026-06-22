@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import useReveal from '../hooks/useReveal'
 
 const skillGroups = [
   {
@@ -41,38 +41,14 @@ const skillGroups = [
 ]
 
 function Skills() {
-  const sectionRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section || !('IntersectionObserver' in window)) {
-      setIsVisible(true)
-      return undefined
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -60px' },
-    )
-
-    observer.observe(section)
-
-    return () => observer.disconnect()
-  }, [])
+  const [sectionRef, isVisible] = useReveal()
 
   return (
     <section
       ref={sectionRef}
       id="skills"
       aria-labelledby="skills-heading"
-      className={`relative isolate overflow-hidden bg-[#0a0a1a] px-5 py-20 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
+      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#0a0a1a] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
@@ -94,7 +70,7 @@ function Skills() {
           {skillGroups.map(({ name, title, icon, accent, skills }) => (
             <article
               key={name}
-              className="group relative overflow-hidden border border-white/10 bg-[#0d1b2a] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.2)] transition-transform duration-300 ease-out hover:-translate-y-0.5 sm:p-7"
+              className="group relative overflow-hidden border border-white/10 bg-[#0d1b2a] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.2)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-white/20 hover:shadow-[0_22px_50px_rgba(0,0,0,0.3)] sm:p-7"
               style={{
                 backgroundImage:
                   'linear-gradient(135deg, rgba(255,255,255,0.025), transparent 55%), repeating-linear-gradient(45deg, rgba(255,255,255,0.024) 0px, rgba(255,255,255,0.024) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(54,113,198,0.035) 0px, rgba(54,113,198,0.035) 1px, transparent 1px, transparent 6px)',

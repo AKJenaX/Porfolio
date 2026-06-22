@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import useReveal from '../hooks/useReveal'
 
 const timelineEntries = [
   {
@@ -55,38 +55,14 @@ const carbonTexture =
   'linear-gradient(135deg, rgba(255,255,255,0.024), transparent 52%), repeating-linear-gradient(45deg, rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(54,113,198,0.032) 0px, rgba(54,113,198,0.032) 1px, transparent 1px, transparent 6px)'
 
 function Experience() {
-  const sectionRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section || !('IntersectionObserver' in window)) {
-      setIsVisible(true)
-      return undefined
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -60px' },
-    )
-
-    observer.observe(section)
-
-    return () => observer.disconnect()
-  }, [])
+  const [sectionRef, isVisible] = useReveal(0.1)
 
   return (
     <section
       ref={sectionRef}
       id="experience"
       aria-labelledby="experience-heading"
-      className={`relative isolate overflow-hidden bg-[#0a0a1a] px-5 py-20 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
+      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#0a0a1a] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
@@ -130,7 +106,7 @@ function Experience() {
                   />
 
                   <article
-                    className="relative overflow-hidden border border-white/10 bg-[#0d1b2a] p-5 transition-[transform,border-color] duration-300 hover:translate-x-1 sm:p-6"
+                    className="relative overflow-hidden border border-white/10 bg-[#0d1b2a] p-5 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-white/20 sm:p-6"
                     style={{ backgroundImage: carbonTexture }}
                   >
                     <div className="absolute top-0 left-0 h-full w-0.5" style={{ backgroundColor: accent }} />
@@ -168,7 +144,7 @@ function Experience() {
               {telemetry.map(({ label, value, accent }, index) => (
                 <div
                   key={label}
-                  className={`relative min-h-32 overflow-hidden p-4 sm:min-h-36 sm:p-5 ${
+                  className={`relative min-h-32 overflow-hidden p-4 transition-colors duration-200 hover:bg-white/[0.025] sm:min-h-36 sm:p-5 ${
                     index % 2 ? 'border-l border-white/10' : ''
                   } ${index > 1 ? 'border-t border-white/10' : ''}`}
                 >

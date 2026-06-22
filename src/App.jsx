@@ -4,16 +4,24 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
+import Navbar from './components/Navbar'
+import ScrollProgress from './components/ScrollProgress'
+import LoadingScreen from './components/LoadingScreen'
 
 export default function App() {
   return (
     <div className="bg-[#0a0a1a] min-h-screen text-white">
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
+      <LoadingScreen />
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+      </main>
     </div>
   )
 }

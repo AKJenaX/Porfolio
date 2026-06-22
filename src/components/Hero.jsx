@@ -22,9 +22,9 @@ function Hero() {
 
   return (
     <section
-      id="home"
+      id="hero"
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-screen w-full overflow-hidden bg-[#0a0a1a] text-white"
+      className="relative isolate flex min-h-[calc(100svh-4rem)] w-full scroll-mt-16 overflow-hidden bg-[#0a0a1a] text-white"
       style={{
         fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       }}
@@ -97,14 +97,14 @@ function Hero() {
 
         <div className="flex flex-1 items-center py-12 sm:py-16 lg:py-20">
           <div className="w-full max-w-5xl">
-            <div className="mb-5 flex items-center gap-3 font-mono text-[11px] font-bold tracking-[0.24em] uppercase sm:text-xs">
+            <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.14em] uppercase sm:text-xs sm:tracking-[0.24em]">
               <span className="bg-[#3671C6] px-3 py-1.5 text-white">#44</span>
               <span className="text-[#FFD700]">Full-Stack Engineer &amp; Backend Specialist</span>
             </div>
 
             <h1
               id="hero-title"
-              className="max-w-5xl text-[clamp(3.2rem,9vw,8.5rem)] leading-[0.82] font-black italic tracking-[-0.055em] uppercase [text-shadow:0_4px_30px_rgba(0,0,0,0.45)]"
+              className="max-w-5xl text-[clamp(2.65rem,9vw,8.5rem)] leading-[0.82] font-black italic tracking-[-0.055em] uppercase [text-shadow:0_4px_30px_rgba(0,0,0,0.45)]"
               style={{ fontFamily: "'Arial Narrow', 'Roboto Condensed', Impact, sans-serif" }}
             >
               <span className="block text-white">ANUP KUMAR</span>

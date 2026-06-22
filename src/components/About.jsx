@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import useReveal from '../hooks/useReveal'
 
 const stats = [
   { label: 'PROJECTS DEPLOYED', value: '5+', accent: '#FFD700' },
@@ -8,38 +8,14 @@ const stats = [
 ]
 
 function About() {
-  const sectionRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section || !('IntersectionObserver' in window)) {
-      setIsVisible(true)
-      return undefined
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -60px' },
-    )
-
-    observer.observe(section)
-
-    return () => observer.disconnect()
-  }, [])
+  const [sectionRef, isVisible] = useReveal()
 
   return (
     <section
       ref={sectionRef}
       id="about"
       aria-labelledby="about-heading"
-      className={`relative isolate overflow-hidden bg-[#0a0a1a] px-5 py-20 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
+      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#0a0a1a] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
@@ -58,7 +34,7 @@ function About() {
           <div className="lg:border-r lg:border-[#FFD700]/45 lg:pr-10 xl:pr-14">
             <article
               aria-label="Driver identification card"
-              className="relative h-full min-h-[430px] overflow-hidden border border-white/10 bg-[#0d1b2a] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.35)] sm:p-8"
+              className="relative h-full min-h-[410px] overflow-hidden border border-white/10 bg-[#0d1b2a] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.35)] transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[#3671C6]/40 sm:min-h-[430px] sm:p-8"
               style={{
                 backgroundImage:
                   'linear-gradient(135deg, rgba(54,113,198,0.17), transparent 48%), repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(54,113,198,0.045) 0px, rgba(54,113,198,0.045) 1px, transparent 1px, transparent 6px)',
@@ -134,7 +110,7 @@ function About() {
               {stats.map(({ label, value, accent }, index) => (
                 <div
                   key={label}
-                  className={`relative min-h-32 overflow-hidden p-4 sm:min-h-36 sm:p-6 ${
+                  className={`relative min-h-32 overflow-hidden p-4 transition-colors duration-200 hover:bg-white/[0.025] sm:min-h-36 sm:p-6 ${
                     index % 2 ? 'border-l border-white/10' : ''
                   } ${index > 1 ? 'border-t border-white/10' : ''}`}
                 >

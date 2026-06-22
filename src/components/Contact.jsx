@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import useReveal from '../hooks/useReveal'
 
 const contactItems = [
   {
@@ -38,39 +38,60 @@ const telemetryItems = [
 const carbonTexture =
   'linear-gradient(135deg, rgba(255,255,255,0.024), transparent 52%), repeating-linear-gradient(45deg, rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(54,113,198,0.032) 0px, rgba(54,113,198,0.032) 1px, transparent 1px, transparent 6px)'
 
-function Contact() {
-  const sectionRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
+function ContactCard({ item }) {
+  const { label, value, href, accent } = item
+  const content = (
+    <>
+      <span className="absolute inset-x-0 top-0 h-px" style={{ backgroundColor: accent }} />
+      <span className="flex items-center justify-between gap-3">
+        <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-white/35 uppercase">{label}</span>
+        <span className="h-1.5 w-8" style={{ backgroundColor: accent, boxShadow: `0 0 8px ${accent}77` }} />
+      </span>
+      <span className="mt-3 block truncate text-sm font-bold text-white/75 transition-colors group-hover:text-[var(--contact-accent)]">
+        {value}
+      </span>
+      {href && (
+        <span aria-hidden="true" className="absolute right-4 bottom-3 text-xs text-white/20 transition-[color,transform] group-hover:translate-x-0.5 group-hover:text-[var(--contact-accent)]">
+          ↗
+        </span>
+      )}
+    </>
+  )
+  const className =
+    'group relative block min-w-0 overflow-hidden border border-white/10 bg-[#0d1b2a] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD700] sm:p-5'
+  const style = { '--contact-accent': accent, backgroundImage: carbonTexture }
 
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section || !('IntersectionObserver' in window)) {
-      setIsVisible(true)
-      return undefined
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -60px' },
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={href.startsWith('http') ? '_blank' : undefined}
+        rel={href.startsWith('http') ? 'noreferrer' : undefined}
+        className={className}
+        style={style}
+        title={value}
+      >
+        {content}
+      </a>
     )
+  }
 
-    observer.observe(section)
+  return (
+    <div className={className} style={style} title={value}>
+      {content}
+    </div>
+  )
+}
 
-    return () => observer.disconnect()
-  }, [])
+function Contact() {
+  const [sectionRef, isVisible] = useReveal(0.1)
 
   return (
     <section
       ref={sectionRef}
       id="contact"
       aria-labelledby="contact-heading"
-      className={`relative isolate overflow-hidden bg-[#0a0a1a] px-5 pt-20 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:pt-24 lg:px-12 lg:pt-28 ${
+      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#0a0a1a] px-5 pt-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:pt-24 lg:px-12 lg:pt-28 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
@@ -108,32 +129,7 @@ function Contact() {
             </p>
 
             <div className="mt-9 grid gap-3 sm:grid-cols-2">
-              {contactItems.map(({ label, value, href, accent }) => (
-                <article
-                  key={label}
-                  className="group relative min-w-0 overflow-hidden border border-white/10 bg-[#0d1b2a] p-4 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 sm:p-5"
-                  style={{ backgroundImage: carbonTexture }}
-                >
-                  <span className="absolute inset-x-0 top-0 h-px" style={{ backgroundColor: accent }} />
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="font-mono text-[9px] font-bold tracking-[0.2em] text-white/35 uppercase">{label}</p>
-                    <span className="h-1.5 w-8" style={{ backgroundColor: accent, boxShadow: `0 0 8px ${accent}77` }} />
-                  </div>
-                  {href ? (
-                    <a
-                      href={href}
-                      target={href.startsWith('http') ? '_blank' : undefined}
-                      rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                      className="mt-3 block truncate text-sm font-bold text-white/75 transition-colors group-hover:text-[var(--contact-accent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD700]"
-                      style={{ '--contact-accent': accent }}
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <p className="mt-3 truncate text-sm font-bold text-white/75">{value}</p>
-                  )}
-                </article>
-              ))}
+              {contactItems.map((item) => <ContactCard key={item.label} item={item} />)}
             </div>
           </div>
 
@@ -154,7 +150,7 @@ function Contact() {
               {telemetryItems.map(({ label, value, accent }, index) => (
                 <div
                   key={label}
-                  className={`relative min-h-28 p-5 sm:min-h-32 sm:p-6 ${index % 2 ? 'sm:border-l sm:border-white/10' : ''} ${
+                  className={`relative min-h-28 p-5 transition-colors duration-200 hover:bg-white/[0.025] sm:min-h-32 sm:p-6 ${index % 2 ? 'sm:border-l sm:border-white/10' : ''} ${
                     index ? 'border-t border-white/10' : ''
                   } ${index === 1 ? 'sm:border-t-0' : ''}`}
                 >
