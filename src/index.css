@@ -1,16 +1,88 @@
 @import "tailwindcss";
 
+/* ── Red Bull Racing Design Tokens ── */
+:root {
+  --rb-bg-primary: #060B26;
+  --rb-bg-secondary: #091430;
+  --rb-blue: #1E5BC6;
+  --rb-red: #DC052D;
+  --rb-yellow: #F7D417;
+  --rb-white: #FFFFFF;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+/* ── Keyframe Animations ── */
+
+@keyframes telemetry-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes border-trace {
+  0% { background-position: 0% 0%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sweep-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes scan-line-move {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 6px var(--glow-color, rgba(220,5,45,0.3)); }
+  50% { box-shadow: 0 0 20px var(--glow-color, rgba(220,5,45,0.6)); }
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes border-light {
+  0% {
+    background-position: 0% 0%;
+    background-size: 300% 300%;
+  }
+  100% {
+    background-position: 100% 100%;
+    background-size: 300% 300%;
+  }
+}
+
+/* ── Base Layer ── */
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    background: #0a0a1a;
+    background: var(--rb-bg-primary);
   }
 
   body {
     min-width: 320px;
     margin: 0;
     overflow-x: hidden;
-    background: #0a0a1a;
+    background: var(--rb-bg-primary);
   }
 
   button,
@@ -19,14 +91,171 @@
   }
 
   ::selection {
-    color: #0a0a1a;
-    background: #ffd700;
+    color: var(--rb-bg-primary);
+    background: var(--rb-yellow);
   }
 
   :focus-visible {
     scroll-margin-block: 5rem;
   }
 }
+
+/* ── Cursor-follow glow (applied to containers) ── */
+
+.cursor-glow {
+  position: relative;
+}
+
+.cursor-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(30, 91, 198, 0.06),
+    transparent 40%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cursor-glow:hover::before {
+  opacity: 1;
+}
+
+/* ── Animated border trace for cards ── */
+
+.border-trace {
+  position: relative;
+}
+
+.border-trace::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--rb-red),
+    var(--rb-blue),
+    transparent
+  );
+  background-size: 300% 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1px;
+  animation: border-trace 3s linear infinite;
+}
+
+.border-trace:hover::after {
+  opacity: 1;
+}
+
+/* ── Telemetry grid background ── */
+
+.telemetry-bg {
+  background-image:
+    linear-gradient(rgba(30, 91, 198, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 91, 198, 0.03) 1px, transparent 1px),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.008) 0px,
+      rgba(255, 255, 255, 0.008) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(30, 91, 198, 0.015) 0px,
+      rgba(30, 91, 198, 0.015) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  background-size: 80px 80px, 80px 80px, auto, auto;
+}
+
+/* ── Carbon fiber texture ── */
+
+.carbon-fiber {
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.02), transparent 52%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.018) 0px,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(30,91,198,0.025) 0px,
+      rgba(30,91,198,0.025) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+}
+
+/* ── Scan line overlay ── */
+
+.scan-line-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(30, 91, 198, 0.015) 2px,
+    rgba(30, 91, 198, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Magnetic button effect ── */
+
+.magnetic-btn {
+  transition: transform 0.2s ease-out, box-shadow 0.3s ease;
+}
+
+.magnetic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(30, 91, 198, 0.3);
+}
+
+/* ── Staggered fade-up for children ── */
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.stagger-children.is-visible > * {
+  animation: fade-up 0.6s ease forwards;
+}
+
+.stagger-children.is-visible > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children.is-visible > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children.is-visible > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children.is-visible > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children.is-visible > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children.is-visible > *:nth-child(6) { animation-delay: 400ms; }
+.stagger-children.is-visible > *:nth-child(7) { animation-delay: 480ms; }
+.stagger-children.is-visible > *:nth-child(8) { animation-delay: 560ms; }
+
+/* ── Reduced motion ── */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -40,5 +269,16 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .cursor-glow::before,
+  .border-trace::after,
+  .scan-line-overlay::after {
+    display: none;
+  }
+
+  .stagger-children > * {
+    opacity: 1;
+    transform: none;
   }
 }

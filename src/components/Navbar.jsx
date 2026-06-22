@@ -60,10 +60,10 @@ function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-[80] border-b border-white/10 bg-[#0a0a1a]/95 shadow-[0_10px_40px_rgba(0,0,0,0.3)] backdrop-blur-xl">
+    <header className="sticky top-0 z-[80] border-b border-white/8 bg-[#060B26]/95 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl">
       <a
         href="#hero"
-        className="sr-only z-[100] bg-[#FFD700] px-4 py-2 font-mono text-xs font-black text-[#0a0a1a] focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
+        className="sr-only z-[100] bg-[#F7D417] px-4 py-2 font-mono text-xs font-black text-[#060B26] focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
       >
         Skip to content
       </a>
@@ -72,19 +72,19 @@ function Navbar() {
         <a
           href="#hero"
           onClick={() => handleNavigation('hero')}
-          className="group flex shrink-0 items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD700]"
+          className="group flex shrink-0 items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
           aria-label="Anup Kumar Jena — return to hero"
         >
-          <span className="border-l-2 border-[#FFD700] pl-2 font-mono text-xl leading-none font-black italic tracking-[-0.08em] text-white">
+          <span className="border-l-2 border-[#DC052D] pl-2 font-mono text-xl leading-none font-black italic tracking-[-0.08em] text-white transition-[text-shadow] group-hover:[text-shadow:0_0_12px_rgba(220,5,45,0.4)]">
             #44
           </span>
-          <span className="hidden font-mono text-[9px] font-bold tracking-[0.2em] text-white/45 uppercase transition-colors group-hover:text-[#FFD700] sm:block">
+          <span className="hidden font-mono text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase transition-colors group-hover:text-[#DC052D] sm:block">
             AKJ / Portfolio
           </span>
         </a>
 
         <div className="hidden items-stretch self-stretch lg:flex">
-          {navigation.map(({ id, label }) => {
+          {navigation.map(({ id, label }, index) => {
             const isActive = activeId === id
             return (
               <a
@@ -92,16 +92,37 @@ function Navbar() {
                 href={`#${id}`}
                 onClick={() => handleNavigation(id)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative flex items-center px-2.5 font-mono text-[9px] font-bold tracking-[0.12em] uppercase transition-colors duration-200 xl:px-3.5 ${
-                  isActive ? 'text-[#FFD700]' : 'text-white/45 hover:text-white'
+                className={`relative flex items-center gap-2 px-2.5 font-mono text-[9px] font-bold tracking-[0.12em] uppercase transition-colors duration-200 xl:px-3.5 ${
+                  isActive ? 'text-white' : 'text-white/40 hover:text-white/70'
                 }`}
               >
-                {label}
+                {/* Sector marker dot */}
+                <span
+                  className="h-1 w-1 rounded-full transition-all duration-300"
+                  style={{
+                    backgroundColor: isActive ? '#DC052D' : 'transparent',
+                    boxShadow: isActive ? '0 0 6px rgba(220,5,45,0.6)' : 'none',
+                  }}
+                />
+                <span className={`transition-colors duration-200 ${isActive ? '' : ''}`}>
+                  {label}
+                </span>
+                {/* Sector number */}
+                <span
+                  className="text-[7px] tabular-nums transition-colors duration-200"
+                  style={{ color: isActive ? '#DC052D' : 'rgba(255,255,255,0.15)' }}
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                {/* Active underline */}
                 <span
                   aria-hidden="true"
-                  className={`absolute inset-x-2.5 bottom-0 h-0.5 bg-[#FFD700] transition-transform duration-300 xl:inset-x-3.5 ${
-                    isActive ? 'scale-x-100' : 'scale-x-0'
-                  }`}
+                  className="absolute inset-x-2.5 bottom-0 h-0.5 transition-all duration-300 xl:inset-x-3.5"
+                  style={{
+                    transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
+                    background: isActive ? 'linear-gradient(90deg, #DC052D, #1E5BC6)' : '#DC052D',
+                    boxShadow: isActive ? '0 2px 8px rgba(220,5,45,0.5)' : 'none',
+                  }}
                 />
               </a>
             )
@@ -114,17 +135,17 @@ function Navbar() {
           aria-controls="mobile-navigation"
           aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           onClick={() => setIsMenuOpen((open) => !open)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-white/15 bg-white/[0.03] transition-[border-color,background-color] hover:border-[#FFD700]/70 hover:bg-[#FFD700]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD700] lg:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-white/12 bg-white/[0.03] transition-[border-color,background-color] hover:border-[#DC052D]/70 hover:bg-[#DC052D]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] lg:hidden"
         >
           <span className={`h-px w-5 bg-white transition-transform duration-200 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
-          <span className={`h-px w-5 bg-[#FFD700] transition-opacity duration-200 ${isMenuOpen ? 'opacity-0' : ''}`} />
+          <span className={`h-px w-5 bg-[#DC052D] transition-opacity duration-200 ${isMenuOpen ? 'opacity-0' : ''}`} />
           <span className={`h-px w-5 bg-white transition-transform duration-200 ${isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
         </button>
       </nav>
 
       <div
         id="mobile-navigation"
-        className={`absolute inset-x-0 top-full overflow-hidden border-b border-white/10 bg-[#0d1b2a]/98 shadow-[0_24px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-[max-height,opacity] duration-300 lg:hidden ${
+        className={`absolute inset-x-0 top-full overflow-hidden border-b border-white/8 bg-[#091430]/98 shadow-[0_24px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-[max-height,opacity] duration-300 lg:hidden ${
           isMenuOpen ? 'max-h-[28rem] opacity-100' : 'pointer-events-none max-h-0 opacity-0'
         }`}
       >
@@ -137,12 +158,20 @@ function Navbar() {
                 href={`#${id}`}
                 onClick={() => handleNavigation(id)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex min-h-12 items-center justify-between bg-[#0d1b2a] px-4 font-mono text-[10px] font-bold tracking-[0.14em] uppercase transition-colors ${
-                  isActive ? 'text-[#FFD700]' : 'text-white/55 hover:bg-white/[0.035] hover:text-white'
+                className={`flex min-h-12 items-center justify-between bg-[#091430] px-4 font-mono text-[10px] font-bold tracking-[0.14em] uppercase transition-colors ${
+                  isActive ? 'text-[#DC052D]' : 'text-white/50 hover:bg-white/[0.03] hover:text-white'
                 }`}
+                style={{
+                  animationDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
+                }}
               >
-                <span>{label}</span>
-                <span className="text-[9px] text-white/25">0{index + 1}</span>
+                <span className="flex items-center gap-2">
+                  {isActive && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#DC052D] shadow-[0_0_6px_rgba(220,5,45,0.6)]" />
+                  )}
+                  {label}
+                </span>
+                <span className="text-[9px] text-white/20">0{index + 1}</span>
               </a>
             )
           })}

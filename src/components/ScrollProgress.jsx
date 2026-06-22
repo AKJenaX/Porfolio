@@ -31,8 +31,12 @@ function ScrollProgress() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[100] h-[3px] bg-black/30">
       <div
-        className="h-full origin-left bg-[#FFD700] shadow-[0_0_12px_rgba(255,215,0,0.75)] will-change-transform"
-        style={{ transform: `scaleX(${progress / 100})` }}
+        className="h-full origin-left will-change-transform"
+        style={{
+          transform: `scaleX(${progress / 100})`,
+          background: 'linear-gradient(90deg, #DC052D, #1E5BC6)',
+          boxShadow: '0 0 14px rgba(220,5,45,0.7), 0 0 6px rgba(30,91,198,0.5)',
+        }}
       />
     </div>
   )
