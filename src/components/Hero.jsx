@@ -90,7 +90,7 @@ function Hero() {
           <div className="w-full max-w-5xl">
             {/* Badge */}
             <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.14em] uppercase sm:text-xs sm:tracking-[0.24em]">
-              <span className="bg-[#DC052D] px-3 py-1.5 text-white shadow-[0_0_12px_rgba(220,5,45,0.4)]">#44</span>
+              <span className="bg-[#DC052D] px-3 py-1.5 text-white shadow-[0_0_12px_rgba(220,5,45,0.4)]">#19</span>
               <span className="text-[#F7D417]">Full-Stack Engineer &amp; Backend Specialist</span>
             </div>
 

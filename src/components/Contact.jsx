@@ -116,7 +116,7 @@ function Contact() {
         <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-16">
           <div>
             <p className="font-mono text-[10px] font-bold tracking-[0.26em] text-[#DC052D] uppercase sm:text-xs">
-              Radio channel / 44
+              Radio channel / 19
             </p>
             <h3
               className="mt-3 text-4xl leading-none font-black italic tracking-[-0.035em] uppercase sm:text-5xl"

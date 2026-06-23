@@ -76,7 +76,7 @@ function Navbar() {
           aria-label="Anup Kumar Jena — return to hero"
         >
           <span className="border-l-2 border-[#DC052D] pl-2 font-mono text-xl leading-none font-black italic tracking-[-0.08em] text-white transition-[text-shadow] group-hover:[text-shadow:0_0_12px_rgba(220,5,45,0.4)]">
-            #44
+            #19
           </span>
           <span className="hidden font-mono text-[9px] font-bold tracking-[0.2em] text-white/40 uppercase transition-colors group-hover:text-[#DC052D] sm:block">
             AKJ / Portfolio

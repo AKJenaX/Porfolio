@@ -90,7 +90,7 @@ function LoadingScreen() {
         <div className="flex items-end justify-between gap-5 font-mono uppercase">
           <div>
             <p className="text-[9px] font-bold tracking-[0.28em] text-[#DC052D]">
-              Race control / System 44
+              Race control / System 19
             </p>
             <p
               className="mt-3 min-h-[1.5em] text-sm font-black tracking-[0.16em] text-white transition-opacity duration-300 sm:text-base"

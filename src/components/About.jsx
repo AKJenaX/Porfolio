@@ -47,7 +47,7 @@ function About() {
                 className="absolute -right-2 top-10 select-none text-[clamp(10rem,23vw,17rem)] leading-none font-black italic tracking-[-0.09em] text-white/[0.025]"
                 style={{ fontFamily: "'Arial Narrow', Impact, sans-serif" }}
               >
-                #44
+                #19
               </div>
 
               <div className="relative flex h-full flex-col">
@@ -56,7 +56,7 @@ function About() {
                     Driver Profile
                   </p>
                   <span className="border border-[#1E5BC6]/50 bg-[#1E5BC6]/10 px-2 py-1 font-mono text-[9px] tracking-[0.18em] text-[#5a9ae8] uppercase">
-                    CIT / 44
+                    CIT / 19
                   </span>
                 </div>
 
