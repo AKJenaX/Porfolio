@@ -78,6 +78,13 @@
     background: var(--rb-bg-primary);
   }
 
+  @supports not (selector(::-webkit-scrollbar)) {
+    html {
+      scrollbar-color: var(--rb-red) var(--rb-bg-primary);
+      scrollbar-width: thin;
+    }
+  }
+
   body {
     min-width: 320px;
     margin: 0;
@@ -282,3 +289,38 @@
     transform: none;
   }
 }
+
+/* ── Premium Telemetry Scrollbar ── */
+@media (pointer: fine) {
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  ::-webkit-scrollbar {
+    display: block !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-track {
+    background: var(--rb-bg-primary) !important;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--rb-red) 0%, var(--rb-bg-secondary) 50%, var(--rb-blue) 100%) !important;
+    border: 2px solid var(--rb-bg-primary) !important;
+    border-radius: 9999px !important;
+    box-shadow: inset 0 0 4px rgba(30, 91, 198, 0.25) !important;
+  }
+
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff1e4b 0%, #11234d 50%, #3679f5 100%) !important;
+    border-color: var(--rb-bg-secondary) !important;
+    box-shadow: inset 0 0 6px rgba(247, 212, 23, 0.45) !important; /* Subtle yellow telemetry accent highlight */
+  }
+}
+
