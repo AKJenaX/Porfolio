@@ -21,7 +21,7 @@ const projects = [
       'GitHub Actions',
     ],
     description:
-      'Full-stack smart waste management platform with real-time telemetry streaming, interactive mapping, OpenAI-powered assistance, JWT authentication, and CI/CD deployment.',
+      'IoT-enabled smart waste management backend with a real-time WebSocket telemetry pipeline, MySQL database write-coalescing, OpenAI-powered schedule optimization, and containerized Docker CI/CD deployment.',
     metrics: { uptime: '99.2%', latency: '<80ms', users: '150+' },
     caseStudy: {
       problem: 'Municipal waste collections are traditionally scheduled statically, causing trucks to check half-empty containers (wasting fuel and labor) while overflowing containers remain neglected. The goal was to build a system that dynamically allocates routes based on live fill levels.',
@@ -104,7 +104,7 @@ const projects = [
     status: 'DEPLOYED',
     tech: ['Node.js', 'Express.js', 'React', 'MongoDB Atlas', 'ESP32', 'Telegram Bot API', 'Razorpay', 'WebSockets'],
     description:
-      'End-to-end IoT monitoring platform collecting ESP32 telemetry, processing sensor data, and providing real-time dashboard visibility with automated alerting.',
+      'IoT telemetry processor and API gateway collecting real-time water metrics from ESP32 nodes, storing historical data in MongoDB Atlas, and dispatching threshold alerts via Telegram Bot hooks.',
     metrics: { uptime: '98.5%', latency: '<120ms', sensors: '12' },
     caseStudy: {
       problem: 'Remote water tanks and storage systems are highly susceptible to sudden overflow issues and rapid quality degradation. Manual checks are infrequent, causing delayed actions that lead to equipment damage or health concerns.',
@@ -180,7 +180,7 @@ const projects = [
     status: 'DEPLOYED',
     tech: ['Python', 'FastAPI', 'Docker', 'REST APIs', 'Anomaly Detection'],
     description:
-      'Production-grade fraud detection backend with structured logging, alert retrieval APIs, anomaly classification, Docker deployment, and monitoring workflows.',
+      'High-concurrency fraud detection service built with FastAPI and Python, utilizing memory-mapped databases for low-latency coordinate analysis, structured JSON logging, and Docker Compose environments.',
     metrics: { accuracy: '96.4%', latency: '<50ms', alerts: '1K+' },
     caseStudy: {
       problem: 'Financial transaction layers process thousands of concurrent requests. Fraud checking mechanisms must analyze each transaction against strict compliance rules and location anomalies without introducing user-facing checkout latency.',
@@ -256,7 +256,7 @@ const projects = [
     status: 'LIVE',
     tech: ['Python', 'FastAPI', 'Streamlit', 'Ollama', 'Multi-Agent Systems', 'REST APIs'],
     description:
-      'Multi-agent orchestration platform coordinating AI agents through FastAPI services, local LLM inference, stateful task management, and observability tooling.',
+      'Multi-agent orchestration backend coordinating local LLM models (Ollama) through asynchronous FastAPI routers, managing stateful session context windows, and token limit constraints.',
     metrics: { agents: '4', latency: '<200ms', tasks: '500+' },
     caseStudy: {
       problem: 'Single LLM calls frequently fail at complex coding tasks or dynamic planning. Solving multi-layered tasks requires specialized agents operating collaboratively, but managing conversation flow and state limits local hardware capacity.',
@@ -332,7 +332,7 @@ const projects = [
     status: 'HACKATHON',
     tech: ['Python', 'FastAPI', 'Docker', 'Reinforcement Learning', 'Distributed Systems'],
     description:
-      'Distributed task scheduling platform developed during a hackathon to optimize workload execution and reduce scheduling delays through intelligent routing.',
+      'Distributed task scheduler API implementing a reinforcement learning Q-learning dispatcher to route dynamic batch jobs across containerized worker clusters simulated with Docker.',
     metrics: { reduction: '40%', nodes: '8', tasks: '2K+' },
     caseStudy: {
       problem: 'Conventional load balancing (e.g. Round-Robin) distributes dynamic, resource-intensive jobs blindly, overload worker servers while leaving others idle, leading to latency bottlenecks.',

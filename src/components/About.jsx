@@ -4,7 +4,7 @@ const stats = [
   { label: 'PROJECTS DEPLOYED', value: '5+', accent: '#DC052D' },
   { label: 'TECH STACK SIZE', value: '20+', accent: '#1E5BC6' },
   { label: 'LINES OF CODE', value: '10K+', accent: '#1E5BC6' },
-  { label: 'CURRENT LAP', value: '2nd Year', accent: '#F7D417' },
+  { label: 'CURRENT LAP', value: '4th Year', accent: '#F7D417' },
 ]
 
 function About() {
@@ -83,7 +83,7 @@ function About() {
                       <dt className="text-[9px] tracking-[0.2em] text-white/30 uppercase">Status</dt>
                       <dd className="flex items-center gap-2 font-bold tracking-wide text-[#F7D417]">
                         <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
-                        ACTIVE — 2nd Year
+                        ACTIVE — 4th Year
                       </dd>
                     </div>
                   </dl>
@@ -100,10 +100,10 @@ function About() {
               Engineering systems for the <span className="text-[#1E5BC6]">fast lane.</span>
             </h3>
             <p className="mt-6 max-w-3xl text-sm leading-7 text-white/55 sm:text-base sm:leading-8">
-              Computer Science undergraduate specializing in Cybersecurity and IoT. I build full-stack web
-              applications and backend systems using React, Node.js, FastAPI, and Docker. Passionate about
-              high-throughput, low-latency systems and real-time data pipelines. Currently learning Go to push my
-              backend capabilities further.
+              Computer Science undergraduate specializing in backend architecture, scalable APIs, and cloud services. 
+              I design and build high-throughput backend systems and AI-powered applications using Python (FastAPI), 
+              Node.js, and Docker. Passionate about technical problem solving, I focus on building robust system integrations 
+              and real-time data flow while maintaining full-stack capabilities with React.
             </p>
 
             <div className={`stagger-children mt-10 grid grid-cols-2 border border-white/8 bg-[#091430]/80 ${isVisible ? 'is-visible' : ''}`}>

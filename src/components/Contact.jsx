@@ -35,8 +35,8 @@ const contactItems = [
 const telemetryItems = [
   { label: 'STATUS', value: 'AVAILABLE FOR OPPORTUNITIES', accent: '#22c55e' },
   { label: 'PRIMARY ROLE', value: 'BACKEND ENGINEER', accent: '#DC052D' },
-  { label: 'SECONDARY ROLE', value: 'ANDROID DEVELOPER', accent: '#1E5BC6' },
-  { label: 'CURRENT FOCUS', value: 'GO + SYSTEM DESIGN', accent: '#F7D417' },
+  { label: 'SECONDARY ROLE', value: 'FULL STACK DEVELOPER', accent: '#1E5BC6' },
+  { label: 'CURRENT FOCUS', value: 'PYTHON • AI • CLOUD', accent: '#F7D417' },
   { label: 'RESPONSE TIME', value: '< 24 HOURS', accent: '#1E5BC6' },
   { label: 'OPEN SOURCE', value: 'ACTIVE', accent: '#22c55e' },
 ]
@@ -134,8 +134,7 @@ function Contact() {
               Get in <span className="text-[#1E5BC6]">touch</span>
             </h3>
             <p className="mt-6 max-w-2xl text-sm leading-7 text-white/52 sm:text-base sm:leading-8">
-              Interested in backend engineering, Android development, AI systems, hackathons, startups, open-source
-              contributions, or collaboration opportunities? Let&apos;s connect.
+              Interested in backend engineering, Python, AI/ML, cloud systems, or full stack opportunities? Let&apos;s connect.
             </p>
 
             <div className={`stagger-children mt-9 grid gap-3 sm:grid-cols-2 ${isVisible ? 'is-visible' : ''}`}>

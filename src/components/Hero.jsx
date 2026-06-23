@@ -91,7 +91,7 @@ function Hero() {
             {/* Badge */}
             <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.14em] uppercase sm:text-xs sm:tracking-[0.24em]">
               <span className="bg-[#DC052D] px-3 py-1.5 text-white shadow-[0_0_12px_rgba(220,5,45,0.4)]">#19</span>
-              <span className="text-[#F7D417]">Full-Stack Engineer &amp; Backend Specialist</span>
+              <span className="text-[#F7D417]">Backend Engineer &amp; Python Developer</span>
             </div>
 
             {/* Title */}
@@ -109,7 +109,7 @@ function Hero() {
 
             {/* Tagline */}
             <p className="mt-6 max-w-2xl text-lg leading-relaxed font-medium text-white/68 sm:text-xl">
-              &quot;Building high-throughput systems at the speed of thought&quot;
+              &quot;Developing robust backend systems, scalable cloud architectures, and AI integrations with full-stack capability&quot;
             </p>
 
             {/* Driver card — Team/Season */}
