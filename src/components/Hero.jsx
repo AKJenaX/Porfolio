@@ -142,6 +142,23 @@ function Hero() {
                 <span aria-hidden="true">◉</span>
                 Pit wall radio
               </a>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Resume"
+                className="magnetic-btn inline-flex min-h-12 items-center justify-center gap-3 border border-white/20 bg-white/[0.03] px-6 py-3 font-mono text-xs font-black tracking-[0.15em] text-white uppercase transition hover:bg-white/10 hover:border-white/40 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
+                style={{ clipPath: 'polygon(13px 0, 100% 0, 100% 100%, 0 100%, 13px 0)' }}
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                View Resume
+              </a>
             </div>
 
             {/* Social links */}

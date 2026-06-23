@@ -24,6 +24,12 @@ const contactItems = [
     value: 'Bengaluru, India',
     accent: '#F7D417',
   },
+  {
+    label: 'RESUME',
+    value: 'View Resume',
+    href: '/resume.pdf',
+    accent: '#F7D417',
+  },
 ]
 
 const telemetryItems = [
@@ -37,6 +43,7 @@ const telemetryItems = [
 
 function ContactCard({ item }) {
   const { label, value, href, accent } = item
+  const isResume = label === 'RESUME'
   const content = (
     <>
       <span className="absolute inset-x-0 top-0 h-px" style={{ backgroundColor: accent }} />
@@ -55,7 +62,7 @@ function ContactCard({ item }) {
     </>
   )
   const className =
-    'cursor-glow group relative block min-w-0 overflow-hidden border border-white/8 bg-[#091430] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] sm:p-5'
+    `cursor-glow group relative block min-w-0 overflow-hidden border border-white/8 bg-[#091430] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] sm:p-5 ${isResume ? 'sm:col-span-2' : ''}`
   const style = {
     '--contact-accent': accent,
     backgroundImage:
@@ -63,14 +70,16 @@ function ContactCard({ item }) {
   }
 
   if (href) {
+    const isExternalOrResume = href.startsWith('http') || isResume
     return (
       <a
         href={href}
-        target={href.startsWith('http') ? '_blank' : undefined}
-        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        target={isExternalOrResume ? '_blank' : undefined}
+        rel={isExternalOrResume ? 'noopener noreferrer' : undefined}
         className={className}
         style={style}
         title={value}
+        aria-label={isResume ? 'View Resume' : undefined}
       >
         {content}
       </a>
