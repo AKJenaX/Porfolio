@@ -91,7 +91,7 @@ const projects = [
         learnings: 'Gained hands-on experience with write-buffering patterns, balancing real-time data flows against disk write lock limitations.'
       },
       links: {
-        github: 'https://github.com/AKJenaX?tab=repositories',
+        github: 'https://github.com/AKJenaX/EcoFlow',
         live: 'https://ecoflow.demo.anupjena.dev',
         diagram: 'https://ecoflow.demo.anupjena.dev/docs/architecture'
       }
@@ -167,7 +167,7 @@ const projects = [
         learnings: 'Learned the importance of hardware calibration protocols and low-pass filter math when handling dirty analog sensor signals.'
       },
       links: {
-        github: 'https://github.com/AKJenaX?tab=repositories',
+        github: 'https://github.com/AKJenaX/HydroSense',
         live: 'https://hydrosense.demo.anupjena.dev',
         diagram: 'https://hydrosense.demo.anupjena.dev/docs/architecture'
       }
@@ -243,8 +243,8 @@ const projects = [
         learnings: 'Understood microservice speed boundaries, learning to avoid database round-trips by keeping operational geo assets in process memory.'
       },
       links: {
-        github: 'https://github.com/AKJenaX?tab=repositories',
-        live: 'https://bankshield.demo.anupjena.dev',
+        github: 'https://github.com/AKJenaX/BankShield',
+        live: 'https://huggingface.co/spaces/AKJ123/BankShield',
         diagram: 'https://bankshield.demo.anupjena.dev/docs/architecture'
       }
     }
@@ -319,7 +319,7 @@ const projects = [
         learnings: 'Developed deep insights into structured JSON prompts and LLM constraints under agent loops.'
       },
       links: {
-        github: 'https://github.com/AKJenaX?tab=repositories',
+        github: 'https://github.com/AKJenaX/MALO',
         live: 'https://malo.demo.anupjena.dev',
         diagram: 'https://malo.demo.anupjena.dev/docs/architecture'
       }
@@ -395,8 +395,8 @@ const projects = [
         learnings: 'Understood reinforcement learning fundamentals and scheduling algorithms in distributed cluster simulation bounds.'
       },
       links: {
-        github: 'https://github.com/AKJenaX?tab=repositories',
-        live: 'https://taskmesh.demo.anupjena.dev',
+        github: 'https://github.com/AKJenaX/TaskMesh',
+        live: 'https://huggingface.co/spaces/irfan319150/TaskMesh',
         diagram: 'https://taskmesh.demo.anupjena.dev/docs/architecture'
       }
     }
@@ -448,9 +448,8 @@ function Projects() {
       ref={sectionRef}
       id="projects"
       aria-labelledby="projects-heading"
-      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#060B26] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`}
+      className={`relative isolate scroll-mt-16 overflow-hidden bg-[#060B26] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}
     >
       <style>{`
         @keyframes modal-fade-in {
