@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
 import LoadingScreen from './components/LoadingScreen'
 import SectionDivider from './components/SectionDivider'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
   const handleMouseMove = useCallback((e) => {
@@ -24,6 +25,7 @@ export default function App() {
       className="bg-[#060B26] min-h-screen text-white telemetry-bg"
       onMouseMove={handleMouseMove}
     >
+      <Analytics />
       <LoadingScreen />
       <ScrollProgress />
       <Navbar />
