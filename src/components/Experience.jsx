@@ -63,6 +63,11 @@ function Experience() {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
+      {/* Section sweep calibration line */}
+      {isVisible && (
+        <div className="section-sweep-line" style={{ '--sweep-color': '#1E5BC6' }} />
+      )}
+
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_30%,rgba(30,91,198,0.08),transparent_45%)]"
@@ -85,8 +90,9 @@ function Experience() {
             {/* Timeline line */}
             <div
               aria-hidden="true"
-              className="absolute top-3 bottom-3 left-[0.45rem] w-px sm:left-[5.7rem]"
+              className="absolute top-3 bottom-3 left-[0.45rem] w-px origin-top transition-transform duration-1000 ease-out sm:left-[5.7rem]"
               style={{
+                transform: isVisible ? 'scaleY(1)' : 'scaleY(0)',
                 background: 'linear-gradient(to bottom, #DC052D, #1E5BC6, rgba(255,255,255,0.06))',
               }}
             />
@@ -113,7 +119,7 @@ function Experience() {
                   />
 
                   <article
-                    className="cursor-glow relative overflow-hidden border border-white/8 bg-[#091430] p-5 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-white/15 sm:p-6"
+                    className="cursor-glow experience-card relative overflow-hidden border border-white/8 bg-[#091430] p-5 transition-[transform,border-color] duration-300 hover:border-white/15 sm:p-6"
                     style={{
                       backgroundImage:
                         'linear-gradient(135deg, rgba(255,255,255,0.02), transparent 52%), repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(30,91,198,0.025) 0px, rgba(30,91,198,0.025) 1px, transparent 1px, transparent 6px)',

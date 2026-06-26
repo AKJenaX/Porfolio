@@ -62,7 +62,7 @@ function EnergyArc({ start, end, color, speed = 1, reducedMotion }) {
 }
 
 // Slow camera idle drift + mouse follow using a group wrapper instead of mutating camera
-function CameraRig({ reducedMotion }) {
+function CameraRig({ children, reducedMotion }) {
   const groupRef = useRef()
   const mouse = useRef({ x: 0, y: 0 })
 
@@ -83,14 +83,18 @@ function CameraRig({ reducedMotion }) {
     const idleX = Math.sin(t * 0.15) * 0.15
     const idleY = Math.cos(t * 0.12) * 0.1
 
-    const targetX = idleX + mouse.current.x * 0.3
-    const targetY = idleY - mouse.current.y * 0.2
+    const targetX = idleX + mouse.current.x * 0.35
+    const targetY = idleY - mouse.current.y * 0.25
 
-    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, -targetX, 0.02)
-    groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, -targetY, 0.02)
+    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, -targetX, 0.03)
+    groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, -targetY, 0.03)
+
+    // Add subtle yaw/pitch tilt based on cursor to enhance 3D parallax depth
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.current.x * 0.08, 0.03)
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.current.y * 0.06, 0.03)
   })
 
-  return <group ref={groupRef} />
+  return <group ref={groupRef}>{children}</group>
 }
 
 const energyArcs = [
@@ -100,14 +104,36 @@ const energyArcs = [
 ]
 
 function SceneContent({ isMobile, reducedMotion }) {
-  return (
-    <>
-      <CameraRig reducedMotion={reducedMotion} />
+  const blueLightRef = useRef()
+  const redLightRef = useRef()
 
-      {/* Ambient lighting */}
-      <ambientLight intensity={0.15} />
-      <pointLight position={[5, 3, 5]} intensity={0.3} color="#1E5BC6" />
-      <pointLight position={[-4, -2, 3]} intensity={0.15} color="#DC052D" />
+  useFrame((state) => {
+    if (reducedMotion || isMobile) return
+    const t = state.clock.elapsedTime
+
+    // Pulse and orbit point lights for dynamic reflection shifts on meshes
+    if (blueLightRef.current) {
+      const angle = t * 0.25
+      blueLightRef.current.position.x = Math.cos(angle) * 6
+      blueLightRef.current.position.z = Math.sin(angle) * 6
+      blueLightRef.current.intensity = 0.35 + Math.sin(t * 0.6) * 0.1
+    }
+
+    if (redLightRef.current) {
+      const angle = -t * 0.3
+      redLightRef.current.position.x = Math.cos(angle) * 5
+      redLightRef.current.position.z = Math.sin(angle) * 5
+      redLightRef.current.intensity = 0.2 + Math.cos(t * 0.5) * 0.05
+    }
+  })
+
+  return (
+    <CameraRig reducedMotion={reducedMotion}>
+      {/* Ambient lighting - slightly dimmed to let point lights pop */}
+      <ambientLight intensity={0.12} />
+      <pointLight ref={blueLightRef} position={[5, 3, 5]} intensity={0.3} color="#1E5BC6" />
+      <pointLight ref={redLightRef} position={[-4, -2, 3]} intensity={0.15} color="#DC052D" />
+      <directionalLight position={[0, 8, -5]} intensity={0.2} color="#FFFFFF" />
 
       {/* Telemetry rings */}
       <TelemetryRing reducedMotion={reducedMotion} />
@@ -122,7 +148,7 @@ function SceneContent({ isMobile, reducedMotion }) {
 
       {/* Particles */}
       <Particles isMobile={isMobile} reducedMotion={reducedMotion} />
-    </>
+    </CameraRig>
   )
 }
 

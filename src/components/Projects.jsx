@@ -451,6 +451,10 @@ function Projects() {
       className={`relative isolate scroll-mt-16 overflow-hidden bg-[#060B26] px-5 py-16 text-white transition-[opacity,transform] duration-1000 ease-out sm:px-8 sm:py-24 lg:px-12 lg:py-28 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}
     >
+      {/* Section sweep calibration line */}
+      {isVisible && (
+        <div className="section-sweep-line" style={{ '--sweep-color': '#F7D417' }} />
+      )}
       <style>{`
         @keyframes modal-fade-in {
           from { opacity: 0; backdrop-filter: blur(0px); }
@@ -460,11 +464,27 @@ function Projects() {
           from { transform: scale(0.95) translateY(10px); opacity: 0; }
           to { transform: scale(1) translateY(0); opacity: 1; }
         }
+        @keyframes hud-scan {
+          0% { top: 0%; opacity: 0.8; }
+          50% { opacity: 1; }
+          100% { top: 100%; opacity: 0; }
+        }
         .animate-fade-in {
           animation: modal-fade-in 0.2s ease-out forwards;
         }
         .animate-scale-in {
-          animation: modal-scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: modal-scale-in 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
+        }
+        .modal-scanline {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, transparent, var(--modal-accent, #DC052D), transparent);
+          box-shadow: 0 0 12px var(--modal-accent, #DC052D);
+          pointer-events: none;
+          z-index: 50;
+          animation: hud-scan 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
         .tab-btn {
           position: relative;
@@ -653,7 +673,7 @@ function Projects() {
           onClick={() => setActiveProject(null)}
         >
           <div
-            className="animate-scale-in relative flex h-[90vh] w-full max-w-4xl flex-col border border-white/12 bg-[#091430] text-white shadow-[0_24px_70px_rgba(0,0,0,0.65)] sm:h-[82vh]"
+            className="animate-scale-in relative flex h-[90vh] w-full max-w-4xl flex-col border border-white/12 bg-[#091430] text-white shadow-[0_24px_70px_rgba(0,0,0,0.65)] sm:h-[82vh] overflow-hidden"
             style={{
               borderTopColor: activeProject.accent,
               borderTopWidth: '4px',
@@ -661,6 +681,8 @@ function Projects() {
             }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Terminal Sweep Calibration Line */}
+            <div className="modal-scanline" style={{ '--modal-accent': activeProject.accent }} />
             {/* Modal Top Telemetry Strip */}
             <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/8 bg-black/20 px-6 py-4 font-mono text-[10px] tracking-[0.2em] text-white/40 uppercase">
               <div className="flex items-center gap-2">

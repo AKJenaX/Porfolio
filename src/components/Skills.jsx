@@ -64,6 +64,11 @@ function Skills() {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
+      {/* Section sweep calibration line */}
+      {isVisible && (
+        <div className="section-sweep-line" style={{ '--sweep-color': '#1E5BC6' }} />
+      )}
+
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_45%,rgba(30,91,198,0.08),transparent_45%)]"
@@ -82,7 +87,7 @@ function Skills() {
           {skillGroups.map(({ name, title, icon, accent, skills }) => (
             <article
               key={name}
-              className="cursor-glow group relative overflow-hidden border border-white/8 bg-[#091430] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.25)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-white/15 hover:shadow-[0_22px_50px_rgba(0,0,0,0.35)] sm:p-7"
+              className="cursor-glow skill-card group relative overflow-hidden border border-white/8 bg-[#091430] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.25)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-white/15 hover:shadow-[0_22px_50px_rgba(0,0,0,0.35)] sm:p-7"
               style={{
                 backgroundImage:
                   'linear-gradient(135deg, rgba(255,255,255,0.02), transparent 55%), repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(30,91,198,0.025) 0px, rgba(30,91,198,0.025) 1px, transparent 1px, transparent 6px)',

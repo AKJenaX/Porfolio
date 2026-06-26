@@ -62,7 +62,7 @@ function ContactCard({ item }) {
     </>
   )
   const className =
-    `cursor-glow group relative block min-w-0 overflow-hidden border border-white/8 bg-[#091430] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] sm:p-5 ${isResume ? 'sm:col-span-2' : ''}`
+    `cursor-glow contact-card group relative block min-w-0 overflow-hidden border border-white/8 bg-[#091430] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] sm:p-5 ${isResume ? 'sm:col-span-2' : ''}`
   const style = {
     '--contact-accent': accent,
     backgroundImage:
@@ -105,6 +105,11 @@ function Contact() {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
+      {/* Section sweep calibration line */}
+      {isVisible && (
+        <div className="section-sweep-line" style={{ '--sweep-color': '#DC052D' }} />
+      )}
+
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_38%,rgba(30,91,198,0.1),transparent_45%)]"

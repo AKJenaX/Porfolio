@@ -12,6 +12,7 @@ const formatLapTime = (elapsed) => {
 
 function Hero() {
   const [lapTime, setLapTime] = useState('00:00.000')
+  const [sectorDeltas, setSectorDeltas] = useState({ S1: '+0.000', S2: '+0.000', S3: '+0.000' })
 
   useEffect(() => {
     const startedAt = performance.now()
@@ -19,7 +20,18 @@ function Hero() {
       setLapTime(formatLapTime(Math.floor(performance.now() - startedAt)))
     }, 10)
 
-    return () => window.clearInterval(timer)
+    const deltaTimer = window.setInterval(() => {
+      setSectorDeltas({
+        S1: (Math.random() > 0.52 ? '+' : '-') + (Math.random() * 0.05).toFixed(3),
+        S2: (Math.random() > 0.48 ? '+' : '-') + (Math.random() * 0.03).toFixed(3),
+        S3: (Math.random() > 0.5 ? '+' : '-') + (Math.random() * 0.02).toFixed(3),
+      })
+    }, 1500)
+
+    return () => {
+      window.clearInterval(timer)
+      window.clearInterval(deltaTimer)
+    }
   }, [])
 
   return (
@@ -184,7 +196,10 @@ function Hero() {
           ].map(({ sector, status, color }, index) => (
             <div key={sector} className={`flex items-center justify-between gap-3 px-3 py-3 sm:px-5 ${index ? 'border-l border-white/8' : ''}`}>
               <div>
-                <span className="block font-mono text-sm font-black tracking-wider sm:text-base" style={{ color }}>{sector}</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="block font-mono text-sm font-black tracking-wider sm:text-base" style={{ color }}>{sector}</span>
+                  <span className="font-mono text-[9px] tabular-nums text-white/45 telemetry-flicker">{sectorDeltas[sector]}</span>
+                </div>
                 <span className="hidden text-[8px] tracking-[0.18em] text-white/30 uppercase sm:block">{status}</span>
               </div>
               <span className="h-1.5 w-7 rounded-full sm:w-12" style={{ backgroundColor: color, boxShadow: `0 0 12px ${color}66` }} />

@@ -49,11 +49,14 @@ function DataRing({ radius, color, speed, segments, opacity }) {
   return (
     <group ref={ref}>
       <mesh geometry={tubeGeo}>
-        <meshBasicMaterial
+        <meshStandardMaterial
           color={color}
+          emissive={color}
+          emissiveIntensity={0.6}
+          roughness={0.15}
+          metalness={0.85}
           transparent
           opacity={opacity}
-          toneMapped={false}
         />
       </mesh>
       <lineSegments ref={ticksRef} geometry={tickGeometry}>

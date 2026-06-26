@@ -19,6 +19,11 @@ function About() {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
+      {/* Section sweep calibration line */}
+      {isVisible && (
+        <div className="section-sweep-line" style={{ '--sweep-color': '#DC052D' }} />
+      )}
+
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_82%_50%,rgba(30,91,198,0.1),transparent_50%)]"
@@ -34,7 +39,7 @@ function About() {
           <div className="lg:border-r lg:border-[#DC052D]/35 lg:pr-10 xl:pr-14">
             <article
               aria-label="Driver identification card"
-              className="border-trace relative h-full min-h-[410px] overflow-hidden border border-white/8 bg-[#091430] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[#1E5BC6]/40 sm:min-h-[430px] sm:p-8"
+              className="border-trace driver-card relative h-full min-h-[410px] overflow-hidden border border-white/8 bg-[#091430] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-300 hover:border-[#1E5BC6]/40 sm:min-h-[430px] sm:p-8"
               style={{
                 backgroundImage:
                   'linear-gradient(135deg, rgba(30,91,198,0.14), transparent 48%), repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(30,91,198,0.035) 0px, rgba(30,91,198,0.035) 1px, transparent 1px, transparent 6px)',
@@ -110,7 +115,7 @@ function About() {
               {stats.map(({ label, value, accent }, index) => (
                 <div
                   key={label}
-                  className={`cursor-glow relative min-h-32 overflow-hidden p-4 transition-colors duration-200 hover:bg-white/[0.02] sm:min-h-36 sm:p-6 ${
+                  className={`cursor-glow stat-card relative min-h-32 overflow-hidden p-4 transition-colors duration-200 hover:bg-white/[0.02] sm:min-h-36 sm:p-6 ${
                     index % 2 ? 'border-l border-white/8' : ''
                   } ${index > 1 ? 'border-t border-white/8' : ''}`}
                 >

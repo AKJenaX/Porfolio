@@ -61,6 +61,11 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-[80] border-b border-white/8 bg-[#060B26]/95 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+      <style>{`
+        .mobile-nav-transition {
+          transition: max-height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.12), opacity 0.35s ease;
+        }
+      `}</style>
       <a
         href="#hero"
         className="sr-only z-[100] bg-[#F7D417] px-4 py-2 font-mono text-xs font-black text-[#060B26] focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
@@ -145,7 +150,7 @@ function Navbar() {
 
       <div
         id="mobile-navigation"
-        className={`absolute inset-x-0 top-full overflow-hidden border-b border-white/8 bg-[#091430]/98 shadow-[0_24px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-[max-height,opacity] duration-300 lg:hidden ${
+        className={`absolute inset-x-0 top-full overflow-hidden border-b border-white/8 bg-[#091430]/98 shadow-[0_24px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl mobile-nav-transition lg:hidden ${
           isMenuOpen ? 'max-h-[28rem] opacity-100' : 'pointer-events-none max-h-0 opacity-0'
         }`}
       >
