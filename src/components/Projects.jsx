@@ -297,8 +297,9 @@ const projects = [
       },
       links: {
         github: 'https://github.com/AKJenaX/EcoFlow',
-        diagram: 'https://github.com/AKJenaX/EcoFlow#readme'
-      }
+        live: 'https://eco-flow-neon.vercel.app',
+        diagram: 'https://github.com/AKJenaX/EcoFlow#readme',
+      },
     }
   },
   {
@@ -645,6 +646,16 @@ function Projects() {
                           </svg>
                           GitHub
                         </a>
+                        {project.caseStudy.links?.live && (
+                          <a
+                            href={project.caseStudy.links.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="magnetic-btn inline-flex min-h-10 items-center gap-2 bg-[#DC052D] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#e8163d] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
+                          >
+                            Live Demo ↗
+                          </a>
+                        )}
                         <button
                           type="button"
                           onClick={() => openDiagnostics(project)}
