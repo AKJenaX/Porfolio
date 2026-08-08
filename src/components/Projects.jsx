@@ -4,8 +4,217 @@ import useReveal from '../hooks/useReveal'
 
 const projects = [
   {
-    name: 'GRAND PRIX DE ECOFLOW',
+    name: 'GRAND PRIX DE DCOY',
     position: 'P1',
+    accent: '#00F0FF',
+    status: 'DEPLOYED',
+    tech: [
+      'Python',
+      'FastAPI',
+      'React',
+      'TypeScript',
+      'SQLAlchemy',
+      'Scikit-learn',
+      'Docker',
+      'JWT',
+      'WebSockets',
+    ],
+    description:
+      'Active defense and threat deception console combining Scikit-learn Isolation Forest anomaly scoring, automated honeypot misdirection, MITRE ATT&CK-tagged rule engine, and Dijkstra attack-path graph tracing across network topology.',
+    metrics: { tests: '101 Passed', endpoints: 'REST & WS', auth: 'JWT + bcrypt' },
+    caseStudy: {
+      problem:
+        'Traditional security monitoring relies heavily on passive log collection and static threshold alerts, causing alert fatigue and delayed incident response. DcoY actively intercepts telemetry, calculates continuous anomaly scores using machine learning, routes suspicious traffic to virtual honeypots, and structures forensic evidence into trackable cases.',
+      architecture: {
+        diagram: `
+ ┌──────────────────────┐             HTTP / WS Telemetry
+ │  User Browser (SPA)  │ ───────────────────────────────────┐
+ └──────────────────────┘                                    │
+                                                             ▼
+                                                  ┌─────────────────────┐
+                                                  │  Cloudflare Pages   │
+                                                  │    (Edge CDN)       │
+                                                  └─────────────────────┘
+                                                             │
+                                                             ▼
+                                                  ┌─────────────────────┐
+                                                  │   Render Backend    │
+                                                  │  (FastAPI Router)   │
+                                                  └─────────────────────┘
+                                                             │
+                                ┌────────────────────────────┴────────────────────────────┐
+                                ▼                                                         ▼
+                    ┌───────────────────────┐                                 ┌───────────────────────┐
+                    │ Isolation Forest & ML │                                 │ Dijkstra Path Graph   │
+                    │ (Anomaly Evaluator)   │                                 │ (Attacker Topology)   │
+                    └───────────────────────┘                                 └───────────────────────┘
+                                │                                                         │
+                                ▼                                                         ▼
+                    ┌───────────────────────┐                                 ┌───────────────────────┐
+                    │ Honeypot Misdirection │                                 │  SQLAlchemy / SQLite  │
+                    │   (Decoy Routing)     │                                 │  (Alembic Migrations) │
+                    └───────────────────────┘                                 └───────────────────────┘
+        `,
+        components: [
+          {
+            name: 'Threat Detection Engine',
+            desc: 'Scikit-learn Isolation Forest model scoring telemetry anomalies alongside MITRE ATT&CK-tagged rule evaluation.',
+          },
+          {
+            name: 'Honeypot Misdirection Router',
+            desc: 'Dynamically maps high-risk IP addresses to synthetic honeypot listeners (SSH, HTTP, Database traps).',
+          },
+          {
+            name: 'Attack Path Graph Engine',
+            desc: 'Calculates compromise propagation paths using Dijkstra shortest-path algorithms across network topology.',
+          },
+          {
+            name: 'Hardened Auth & Observability',
+            desc: 'JWT sessions with bcrypt hashing, SHA-256 hashed API keys with constant-time comparison, request-correlation IDs, and Prometheus metrics.',
+          },
+        ],
+        dataFlow: [
+          'Live telemetry streams over WebSocket and REST endpoints with unique X-Request-ID headers for end-to-end tracing.',
+          'Isolation Forest model computes real-time anomaly scores while rule engine evaluates MITRE ATT&CK threshold triggers.',
+          'High-risk threat actors trigger dynamic misdirection to decoy honeypots and Dijkstra path graph recalculation.',
+          'Forensic evidence and incident cases persist via SQLAlchemy with Alembic schema migration management.',
+        ],
+      },
+      techStack: {
+        frontend: ['React 18', 'TypeScript 5', 'Vite', 'Tailwind CSS', 'Lucide Icons'],
+        backend: ['Python 3.11', 'FastAPI', 'Uvicorn', 'Pytest (101 Tests)', 'Prometheus Metrics'],
+        database: ['SQLite', 'SQLAlchemy ORM', 'Alembic Migrations'],
+        cloud: ['Docker', 'Docker Compose', 'Cloudflare Pages (Frontend)', 'Render (Backend)'],
+        aiMl: ['Scikit-learn (Isolation Forest)', 'Dijkstra Graph Algorithms', 'Pandas & NumPy'],
+      },
+      challenges: [
+        {
+          title: 'Alert Fatigue from Static Detection Rules',
+          problem:
+            'Traditional threshold alerting produces high false-positive rates during benign network traffic spikes, overloading SOC analysts.',
+          solution:
+            'Combined unsupervised Scikit-learn Isolation Forest anomaly scoring with a dynamic MITRE ATT&CK rule engine to rank threat severity dynamically before triggering alerts.',
+          tradeoff: 'Requiring initial feature vector normalization in exchange for eliminating static alert noise.',
+        },
+        {
+          title: 'Secure Authentication & API Key Tracing',
+          problem:
+            'Microservice endpoints exposed to public networks require low-overhead authentication without timing attack vulnerabilities on API key verification.',
+          solution:
+            'Implemented JWT session authorization with bcrypt password hashing and SHA-256 hashed API keys utilizing constant-time string comparisons (hmac.compare_digest).',
+          tradeoff: 'Small cryptographic hashing overhead per request to prevent side-channel timing attacks.',
+        },
+      ],
+      outcome: {
+        results: [
+          'Built and verified a resilient active defense console backed by 101 passing Pytest unit and integration tests.',
+          'Deployed production stack to Cloudflare Pages (frontend) and Render (backend) with Docker containers and Alembic schema migrations.',
+        ],
+        learnings:
+          'Gained deep expertise in active defense paradigms, constant-time cryptographic practices, and graph traversal algorithms for threat propagation modeling.',
+      },
+      links: {
+        github: 'https://github.com/AKJenaX/DcoY',
+        live: 'https://dcoy.pages.dev',
+        diagram: 'https://github.com/AKJenaX/DcoY#architecture',
+      },
+    },
+  },
+  {
+    name: 'GRAND PRIX DE TASKMESH',
+    position: 'P2',
+    accent: '#FFFFFF',
+    status: 'HACKATHON',
+    tech: ['Python', 'PyTorch', 'FastAPI', 'OpenEnv', 'Policy Gradient RL'],
+    description:
+      'Distributed task scheduler API implementing a PyTorch policy-gradient agent operating in a custom 41-dimensional OpenEnv observation space to dynamically route bursty workloads across scheduling queues.',
+    metrics: { delayReduction: '15%+', obsSpace: '41-dim', actionSpace: '20 discrete' },
+    caseStudy: {
+      problem:
+        'Conventional load balancing (e.g. FIFO, Shortest-Job-First) relies on static heuristics that fail under bursty, unpredictable workloads—causing critical tasks to stall behind background operations.',
+      architecture: {
+        diagram: `
+ ┌──────────────────────┐             Task Ingestion Queue
+ │   Task Entry Queue   │ ───────────────────────────────────┐
+ └──────────────────────┘                                    │
+                                                             ▼
+                                                  ┌─────────────────────┐
+                                                  │  Policy Gradient RL │
+                                                  │  (PyTorch / OpenEnv)│
+                                                  └─────────────────────┘
+                                                             │
+                                                             ▼
+                                                  ┌─────────────────────┐
+                                                  │ Shaped Reward Engine│
+                                                  │ (Wait/Priority Math)│
+                                                  └─────────────────────┘
+                                                             │
+                                ┌────────────────────────────┼────────────────────────────┐
+                                ▼                            ▼                            ▼
+                    ┌───────────────────────┐    ┌───────────────────────┐    ┌───────────────────────┐
+                    │    41-Dim Obs Space   │    │  20-Discrete Actions  │    │ FastAPI Telemetry API │
+                    │ (Time/Queue Features) │    │  (Selected Task Index)│    │  (Training Engine)    │
+                    └───────────────────────┘    └───────────────────────┘    └───────────────────────┘
+        `,
+        components: [
+          {
+            name: 'OpenEnv Scheduling Env',
+            desc: 'Custom environment featuring a 41-dimensional observation space (time, queued task priorities & durations) and a 20-index discrete action space.',
+          },
+          {
+            name: 'Policy-Gradient Agent',
+            desc: 'PyTorch RL model trained with a shaped reward function balancing execution speed, urgency, and illegal-action penalties.',
+          },
+          {
+            name: 'Shaped Reward Engine',
+            desc: 'Computes reward = (priority * 10) - wait_time with a severe -100 penalty for illegal scheduling choices.',
+          },
+          {
+            name: 'FastAPI Backend & Telemetry',
+            desc: 'Backend microservice driving queue simulations, tracking state transitions, and serving inference endpoints.',
+          },
+        ],
+        dataFlow: [
+          'Tasks enter the scheduling queue with dynamic priority levels and execution duration bounds.',
+          'Policy-gradient agent observes the 41-dim environment state and selects the optimal task index from the 20 discrete actions.',
+          'Selected task executes while the reward function computes penalties for queue wait times and multipliers for high priority.',
+          'RL model adjusts policy weights over 300 training episodes, eliminating illegal moves and optimizing throughput.',
+        ],
+      },
+      techStack: {
+        frontend: ['Task Analytics Console (FastAPI docs / JSON output)'],
+        backend: ['Python 3.11', 'FastAPI', 'PyTorch'],
+        database: ['In-Memory Queue State'],
+        cloud: ['Docker', 'OpenEnv Framework'],
+        aiMl: ['Policy Gradient RL', 'PyTorch', 'Hugging Face TRL Concepts', 'OpenEnv'],
+      },
+      challenges: [
+        {
+          title: 'Static Heuristic Starvation Under Bursty Workloads',
+          problem:
+            'Traditional scheduling heuristics (FIFO, SJF) cannot adapt to unpredictable task bursts, leading to extreme tail latencies for critical jobs.',
+          solution:
+            'Built a custom OpenEnv environment with shaped rewards penalizing wait times and rewarding urgent task dispatch, trained via PyTorch policy gradients.',
+          tradeoff: 'Requiring model training iterations over 300 episodes in exchange for dynamic policy adaptability.',
+        },
+      ],
+      outcome: {
+        results: [
+          'Consistently reduced average task delay by over 15% compared to baseline static heuristics (FIFO, SJF).',
+          'Built as part of a 3-person team for OpenEnv Hackathon India 2026, owning backend integration and core model training.',
+        ],
+        learnings:
+          'Mastered custom OpenEnv environment design, reward shaping math, and policy-gradient RL training pipelines for real-time algorithmic decision-making.',
+      },
+      links: {
+        github: 'https://github.com/AKJenaX/TaskMesh',
+        diagram: 'https://github.com/AKJenaX/TaskMesh#readme',
+      },
+    },
+  },
+  {
+    name: 'GRAND PRIX DE ECOFLOW',
+    position: 'P3',
     accent: '#F7D417',
     status: 'DEPLOYED',
     tech: [
@@ -58,10 +267,6 @@ const projects = [
         components: [
           { name: 'IoT Telemetry Engine', desc: 'Simulates sensor streams pushing bin levels and voltage status over secure WebSocket lines.' },
           { name: 'Ingest Gateway', desc: 'Node.js & Express server hosting WebSockets for active streams and REST endpoints for static operations.' },
-          { name: 'OpenAI Agent', desc: 'Queries MySQL database daily to detect anomalous consumption spikes and recommend optimized dispatch lists.' },
-          { name: 'Dashboard Client', desc: 'React app leveraging Leaflet.js maps for spatial telemetry rendering and Chart.js for bin fill velocity.' }
-        ],
-        dataFlow: [
           'Bins stream telemetry payload (fill percentage, battery, timestamp) via WebSockets.',
           'Gateway processes stream, triggers client state broadcasts, and enqueues record into write-coalescing buffer.',
           'Every 5 seconds, database broker flushes buffer queue to MySQL database in a single query transaction.',
@@ -92,19 +297,27 @@ const projects = [
       },
       links: {
         github: 'https://github.com/AKJenaX/EcoFlow',
-        live: 'https://ecoflow.demo.anupjena.dev',
-        diagram: 'https://ecoflow.demo.anupjena.dev/docs/architecture'
+        diagram: 'https://github.com/AKJenaX/EcoFlow#readme'
       }
     }
   },
   {
     name: 'GRAND PRIX DE HYDROSENSE',
-    position: 'P2',
+    position: 'P4',
     accent: '#C0C0C0',
     status: 'DEPLOYED',
-    tech: ['Node.js', 'Express.js', 'React', 'MongoDB Atlas', 'ESP32', 'Telegram Bot API', 'Razorpay', 'WebSockets'],
+    tech: [
+      'Node.js',
+      'Express.js',
+      'React',
+      'In-Memory (Map)',
+      'ESP32',
+      'Telegram Bot API',
+      'Razorpay',
+      'WebSockets',
+    ],
     description:
-      'IoT telemetry processor and API gateway collecting real-time water metrics from ESP32 nodes, storing historical data in MongoDB Atlas, and dispatching threshold alerts via Telegram Bot hooks.',
+      'IoT telemetry processor and API gateway collecting real-time water metrics from ESP32 nodes into an in-memory Map store, enforcing daily usage limits, and dispatching alerts via Telegram Bot hooks.',
     metrics: { uptime: '98.5%', latency: '<120ms', sensors: '12' },
     caseStudy: {
       problem: 'Remote water tanks and storage systems are highly susceptible to sudden overflow issues and rapid quality degradation. Manual checks are infrequent, causing delayed actions that lead to equipment damage or health concerns.',
@@ -114,293 +327,79 @@ const projects = [
  │  ESP32 Edge Sensors  │ ───────────────────────────────────┐
  │ (pH, TDS, turbidity) │                                    │
  └──────────────────────┘                                    ▼
-                                                  ┌─────────────────────┐
-                                                  │  Telemetry Gateway  │
-                                                  │  (Node.js/Express)  │
-                                                  └─────────────────────┘
-                                                             │
-                               ┌─────────────────────────────┴───────────────┐
-                               ▼                                             ▼
-                   ┌───────────────────────┐                     ┌───────────────────────┐
-                   │    Alert Evaluator    │                     │     MongoDB Atlas     │
-                   │   (Telegram Bot API)  │                     │   (Telemetry Store)   │
-                   └───────────────────────┘                     └───────────────────────┘
-                               │                                             │
-                               ▼                                             ▼
-                   ┌───────────────────────┐                     ┌───────────────────────┐
-                   │   Operator Handset    │                     │   React Web Console   │
-                   │  (Instant Warnings)   │                     │  (Razorpay / Charts)  │
-                   └───────────────────────┘                     └───────────────────────┘
+                                                   ┌─────────────────────┐
+                                                   │  Telemetry Gateway  │
+                                                   │  (Node.js/Express)  │
+                                                   └─────────────────────┘
+                                                              │
+                                ┌─────────────────────────────┴───────────────┐
+                                ▼                                             ▼
+                    ┌───────────────────────┐                     ┌───────────────────────┐
+                    │    Alert Evaluator    │                     │   In-Memory Store     │
+                    │   (Telegram Bot API)  │                     │        (Map)          │
+                    └───────────────────────┘                     └───────────────────────┘
+                                │                                             │
+                                ▼                                             ▼
+                    ┌───────────────────────┐                     ┌───────────────────────┐
+                    │   Operator Handset    │                     │   React Web Console   │
+                    │  (Instant Warnings)   │                     │  (Razorpay / Charts)  │
+                    └───────────────────────┘                     └───────────────────────┘
         `,
         components: [
-          { name: 'ESP32 Firmware', desc: 'Embedded C++ application reading analog inputs, managing Wi-Fi state machines, and shipping JSON payloads.' },
-          { name: 'Gateway REST/WS', desc: 'Backend microservice to authorize sensor keys, validate metrics ranges, and update connection logs.' },
-          { name: 'Telegram Bot Hub', desc: 'Sends target operator alerts on threshold violations (e.g. pH level dropping below 6.5).' },
-          { name: 'Razorpay Gateway', desc: 'Secure payment interface to provision automated recurring premium tier billing.' }
+          {
+            name: 'ESP32 Firmware',
+            desc: 'Embedded C++ application reading analog inputs, managing Wi-Fi state machines, and shipping JSON payloads over WebSockets.',
+          },
+          {
+            name: 'Gateway REST/WS',
+            desc: 'Node.js Express backend microservice processing telemetry streams into an in-memory Map store.',
+          },
+          {
+            name: 'Telegram Bot Hub',
+            desc: 'Sends target operator alerts on threshold violations and daily usage limit breaches.',
+          },
+          {
+            name: 'Razorpay Gateway',
+            desc: 'Secure payment interface to purchase additional water usage allocation overage.',
+          },
         ],
         dataFlow: [
-          'ESP32 Edge hardware samples sensor parameters, applies filtration algorithms, and posts telemetry payloads.',
-          'Gateway validates headers, registers parameters in MongoDB Atlas, and checks values against dynamic safe zones.',
-          'On violation, the bot compiles details (value, zone, time) and pushes high-priority notifications to Operators.',
-          'React app streams data over WebSockets for live telemetry charts, prompting Razorpay checkout when subscription limits occur.'
-        ]
+          'ESP32 edge hardware samples sensor parameters and streams real-time telemetry payloads over WebSockets.',
+          'Gateway validates headers, stores current state in an in-memory Map, and checks values against dynamic safe zones.',
+          'Tiered daily usage limits (home/apartment/commercial/industry) reset automatically at midnight Asia/Kolkata timezone.',
+          'On limit breaches or sensor anomalies, Telegram Bot pushes immediate warnings while React console enables Razorpay top-ups.',
+        ],
       },
       techStack: {
         frontend: ['React', 'Tailwind CSS', 'Chart.js'],
-        backend: ['Node.js', 'Express.js', 'Telegram Bot API'],
-        database: ['MongoDB Atlas (NoSQL)'],
-        cloud: ['Razorpay SDK', 'ESP32 C++ Hardware']
+        backend: ['Node.js', 'Express.js', 'Telegram Bot API', 'WebSockets'],
+        database: ['In-memory (Map) — no persistent database'],
+        cloud: ['Razorpay SDK', 'ESP32 C++ Hardware'],
       },
       challenges: [
         {
           title: 'Analog Signal Fluctuations on Edge',
-          problem: 'Fluid agitation inside tanks triggered volatile, noisy analog reads on pH and TDS probes, causing false anomaly alerts.',
-          solution: 'Implemented a sliding window moving average low-pass filter on the ESP32 firmware side to smooth electrical noise prior to pushing to the API.',
-          tradeoff: 'Accepting a minor 5-second latency offset in parameter changes to guarantee 0% false alerting logs.'
-        }
+          problem:
+            'Fluid agitation inside tanks triggered volatile, noisy analog reads on pH and TDS probes, causing false anomaly alerts.',
+          solution:
+            'Implemented a sliding window moving average low-pass filter on the ESP32 firmware side to smooth electrical noise prior to pushing to the API.',
+          tradeoff: 'Accepting a minor 5-second latency offset in parameter changes to guarantee 0% false alerting logs.',
+        },
       ],
       outcome: {
         results: [
-          'Maintained telemetry tracking metrics on 12 distinct remote hardware nodes with zero missed drop events.',
-          'Successfully built standard subscription workflows combining hardware status constraints with Razorpay hooks.'
+          'Built an ESP32-to-dashboard real-time telemetry pipeline replacing delayed billing cycles with live usage visibility.',
+          'Led backend development on a 4-person team during Samsung Innovation Campus training.',
         ],
-        learnings: 'Learned the importance of hardware calibration protocols and low-pass filter math when handling dirty analog sensor signals.'
+        learnings:
+          'Learned real-time WebSocket protocol handling, timezone-aware cron reset patterns, and hardware sensor signal calibration.',
       },
       links: {
         github: 'https://github.com/AKJenaX/HydroSense',
-        live: 'https://hydrosense.demo.anupjena.dev',
-        diagram: 'https://hydrosense.demo.anupjena.dev/docs/architecture'
-      }
-    }
+        diagram: 'https://github.com/AKJenaX/HydroSense#readme',
+      },
+    },
   },
-  {
-    name: 'GRAND PRIX DE BANKSHIELD',
-    position: 'P3',
-    accent: '#CD7F32',
-    status: 'DEPLOYED',
-    tech: ['Python', 'FastAPI', 'Docker', 'REST APIs', 'Anomaly Detection'],
-    description:
-      'High-concurrency fraud detection service built with FastAPI and Python, utilizing memory-mapped databases for low-latency coordinate analysis, structured JSON logging, and Docker Compose environments.',
-    metrics: { accuracy: '96.4%', latency: '<50ms', alerts: '1K+' },
-    caseStudy: {
-      problem: 'Financial transaction layers process thousands of concurrent requests. Fraud checking mechanisms must analyze each transaction against strict compliance rules and location anomalies without introducing user-facing checkout latency.',
-      architecture: {
-        diagram: `
- ┌──────────────────────┐              JSON Payload
- │  Core Ledger System  │ ───────────────────────────────────┐
- └──────────────────────┘                                    │
-                                                             ▼
-                                                  ┌─────────────────────┐
-                                                  │     FastAPI Ingest  │
-                                                  │  (Asynchronous API) │
-                                                  └─────────────────────┘
-                                                             │
-                                                             ▼
-                                                  ┌─────────────────────┐
-                                                  │    Anomaly Engine   │
-                                                  │ (Velocity & Geo IP) │
-                                                  └─────────────────────┘
-                                                             │
-                               ┌─────────────────────────────┴───────────────┐
-                               ▼                                             ▼
-                   ┌───────────────────────┐                     ┌───────────────────────┐
-                   │  Structured Logging   │                     │    Compliance State   │
-                   │  (python-json-logger) │                     │   (SQLite Backend)    │
-                   └───────────────────────┘                     └───────────────────────┘
-        `,
-        components: [
-          { name: 'FastAPI Ingress', desc: 'Uvicorn-powered API validation layer designed for high concurrency and immediate transactional routing.' },
-          { name: 'Velocity Engine', desc: 'Calculates transactions-per-minute limits to detect card-testing attacks in real-time.' },
-          { name: 'Geo-Distance Evaluator', desc: 'Compares transaction coordinates against IP address location tables to block impossible travel events.' },
-          { name: 'Compliance Logger', desc: 'Outputs standardized JSON logs directly to stdout for ingestion by monitoring agent daemons.' }
-        ],
-        dataFlow: [
-          'Ledger triggers transaction checking requests, passing transactional parameters and geolocation metadata.',
-          'FastAPI receives checks, concurrently querying dynamic geo databases and historical velocity counts in memory.',
-          'Rule engine computes anomaly score; database updates transactional states for legal dashboard review.',
-          'Structured log is written immediately, guaranteeing auditable traces for security operations.'
-        ]
-      },
-      techStack: {
-        frontend: ['Compliance Dashboard (REST CLI)'],
-        backend: ['Python 3.11', 'FastAPI', 'Uvicorn'],
-        database: ['SQLite / MySQL'],
-        cloud: ['Docker', 'MaxMind GeoIP Database']
-      },
-      challenges: [
-        {
-          title: 'Sub-50ms Geolocation Lookups',
-          problem: 'Checking physical distances between sequential card transactions required resolving raw IP addresses to coordinates, which traditionally blocked threads.',
-          solution: 'Utilized memory-mapped databases (MMDB) directly inside the FastAPI process, combined with vectorized Haversine calculations using NumPy.',
-          tradeoff: 'Using rules-based location heuristics over deep learning models to secure microsecond computation profiles and predictable performance.'
-        }
-      ],
-      outcome: {
-        results: [
-          'Maintained transaction check response times under 32ms under simulated loads of 1,000 requests per second.',
-          'Achieved 96.4% anomaly matching accuracy based on historical compliance test logs.'
-        ],
-        learnings: 'Understood microservice speed boundaries, learning to avoid database round-trips by keeping operational geo assets in process memory.'
-      },
-      links: {
-        github: 'https://github.com/AKJenaX/BankShield',
-        live: 'https://huggingface.co/spaces/AKJ123/BankShield',
-        diagram: 'https://bankshield.demo.anupjena.dev/docs/architecture'
-      }
-    }
-  },
-  {
-    name: 'GRAND PRIX DE MALO',
-    position: 'P4',
-    accent: '#1E5BC6',
-    status: 'LIVE',
-    tech: ['Python', 'FastAPI', 'Streamlit', 'Ollama', 'Multi-Agent Systems', 'REST APIs'],
-    description:
-      'Multi-agent orchestration backend coordinating local LLM models (Ollama) through asynchronous FastAPI routers, managing stateful session context windows, and token limit constraints.',
-    metrics: { agents: '4', latency: '<200ms', tasks: '500+' },
-    caseStudy: {
-      problem: 'Single LLM calls frequently fail at complex coding tasks or dynamic planning. Solving multi-layered tasks requires specialized agents operating collaboratively, but managing conversation flow and state limits local hardware capacity.',
-      architecture: {
-        diagram: `
- ┌──────────────────────┐             User Request
- │ Streamlit Dashboard  │ ───────────────────────────────────┐
- └──────────────────────┘                                   │
-                                                            ▼
-                                                 ┌─────────────────────┐
-                                                 │  Orchestration API  │
-                                                 │   (FastAPI Router)  │
-                                                 └─────────────────────┘
-                                                            │
-                                                            ▼
-                                                 ┌─────────────────────┐
-                                                 │  State Coordinator  │
-                                                 │ (Message/Token Mgr) │
-                                                 └─────────────────────┘
-                                                            │
-                               ┌─────────────────────────────┼─────────────────────────────┐
-                               ▼                             ▼                             ▼
-                   ┌───────────────────────┐     ┌───────────────────────┐     ┌───────────────────────┐
-                   │     Planner Agent     │     │      Coder Agent      │     │    Reviewer Agent     │
-                   │   (Local LLM Mesh)    │     │   (Local LLM Mesh)    │     │   (Local LLM Mesh)    │
-                   └───────────────────────┘     └───────────────────────┘     └───────────────────────┘
-        `,
-        components: [
-          { name: 'Streamlit Interface', desc: 'Interactive chat dashboard capturing system requests and showing live agent reasoning streams.' },
-          { name: 'Orchestrator Core', desc: 'FastAPI controller managing session state, parsing prompts, and executing local agent cycles.' },
-          { name: 'Local Model Handler', desc: 'Interfaces with Ollama, hosting local Llama-3 models locally, protecting intellectual property.' },
-          { name: 'Token Budget Manager', desc: 'Monitors context limits, pruning historical conversation loops before LLM limits are hit.' }
-        ],
-        dataFlow: [
-          'User posts coding or analysis prompt to Streamlit web console.',
-          'Orchestrator instantiates state tracking record, calling Planner Agent to split prompt into specialized stages.',
-          'Planner outputs task checklist; Orchestrator forwards checklist to Coder Agent for initial template creation.',
-          'Reviewer Agent reviews output, generating debug suggestions; final correct files stream to user console.'
-        ]
-      },
-      techStack: {
-        frontend: ['Streamlit', 'HTML5 Embeds'],
-        backend: ['Python', 'FastAPI'],
-        database: ['Local JSON State'],
-        cloud: ['Ollama (Local LLM Server)', 'Llama-3 Models']
-      },
-      challenges: [
-        {
-          title: 'Infinite Agent Collaboration Loops',
-          problem: 'Specialized agents (e.g. Coder and Reviewer) entered repetitive ping-pong correction loops on edge cases, consuming massive CPU cycles and exceeding model contexts.',
-          solution: 'Implemented a deterministic state machine token tracker. The orchestrator limits agent conversations to 5 turns. If unsolved, the state manager falls back to safety heuristic structures.',
-          tradeoff: 'Limiting agent conversational search depth to secure deterministic task execution guarantees.'
-        }
-      ],
-      outcome: {
-        results: [
-          'Successfully automated local generation of complex boilerplate microservices offline.',
-          'Maintained zero data leaks by utilizing entirely local LLM parameters.'
-        ],
-        learnings: 'Developed deep insights into structured JSON prompts and LLM constraints under agent loops.'
-      },
-      links: {
-        github: 'https://github.com/AKJenaX/MALO',
-        live: 'https://malo.demo.anupjena.dev',
-        diagram: 'https://malo.demo.anupjena.dev/docs/architecture'
-      }
-    }
-  },
-  {
-    name: 'GRAND PRIX DE TASKMESH',
-    position: 'P5',
-    accent: '#FFFFFF',
-    status: 'HACKATHON',
-    tech: ['Python', 'FastAPI', 'Docker', 'Reinforcement Learning', 'Distributed Systems'],
-    description:
-      'Distributed task scheduler API implementing a reinforcement learning Q-learning dispatcher to route dynamic batch jobs across containerized worker clusters simulated with Docker.',
-    metrics: { reduction: '40%', nodes: '8', tasks: '2K+' },
-    caseStudy: {
-      problem: 'Conventional load balancing (e.g. Round-Robin) distributes dynamic, resource-intensive jobs blindly, overload worker servers while leaving others idle, leading to latency bottlenecks.',
-      architecture: {
-        diagram: `
- ┌──────────────────────┐             Tasks Ingest
- │   Task Entry Queue   │ ───────────────────────────────────┐
- └──────────────────────┘                                   │
-                                                            ▼
-                                                 ┌─────────────────────┐
-                                                 │  Scheduling Agent   │
-                                                 │ (Q-Learning Router) │
-                                                 └─────────────────────┘
-                                                            │
-                                                            ▼
-                                                 ┌─────────────────────┐
-                                                 │    State Monitor    │
-                                                 │ (Node RAM/CPU logs) │
-                                                 └─────────────────────┘
-                                                            │
-                               ┌─────────────────────────────┼─────────────────────────────┐
-                               ▼                             ▼                             ▼
-                   ┌───────────────────────┐     ┌───────────────────────┐     ┌───────────────────────┐
-                   │    Worker Node 01     │     │    Worker Node 02     │     │    Worker Node 03     │
-                   │   (Docker Container)  │     │   (Docker Container)  │     │   (Docker Container)  │
-                   └───────────────────────┘     └───────────────────────┘     └───────────────────────┘
-        `,
-        components: [
-          { name: 'Queue Manager', desc: 'High-speed FIFO queue handling incoming batch computation requests.' },
-          { name: 'Q-Learning Scheduler', desc: 'RL engine assessing state indicators and deciding target node execution routes.' },
-          { name: 'Distributed Workers', desc: 'Containerized Python tasks running inside resource-capped Docker networks.' },
-          { name: 'State Tracker', desc: 'Collects node hardware telemetry (CPU, memory bounds) to feed reinforcement loops.' }
-        ],
-        dataFlow: [
-          'Tasks arrive in the task queue, presenting dynamic execution bounds.',
-          'RL Scheduler queries current worker nodes load status (RAM, CPU, queue length).',
-          'Agent selects worker target, updates worker job queues, and records decision latency.',
-          'Upon worker task completion, actual job run duration is evaluated, returning reward metrics to Q-Table.'
-        ]
-      },
-      techStack: {
-        frontend: ['Task Analytics Console (FastAPI docs/JSON output)'],
-        backend: ['Python', 'FastAPI'],
-        database: ['Local Memory-State (Numpy Q-Table)'],
-        cloud: ['Docker Engine', 'Docker Compose (Cluster Simulation)']
-      },
-      challenges: [
-        {
-          title: 'Routing Oscillation Under Load',
-          problem: 'The scheduler tended to overload a single worker once it resolved as "fastest", leading to sudden bottlenecks before migrating everything to the next worker.',
-          solution: 'Modified the reward function to include a "dispersion penalty" (penalizing worker queue variance) and introduced a routing friction parameter to slow dynamic swings.',
-          tradeoff: 'Slightly slower convergence rate during the reinforcement learning phase to guarantee stable, steady routing behavior.'
-        }
-      ],
-      outcome: {
-        results: [
-          'Achieved 40% reduction in total task completion times compared to standard round-robin schedulers.',
-          'Simulated 8 workers inside Docker networks, managing 2,000+ batch tasks with zero node failures.'
-        ],
-        learnings: 'Understood reinforcement learning fundamentals and scheduling algorithms in distributed cluster simulation bounds.'
-      },
-      links: {
-        github: 'https://github.com/AKJenaX/TaskMesh',
-        live: 'https://huggingface.co/spaces/irfan319150/TaskMesh',
-        diagram: 'https://taskmesh.demo.anupjena.dev/docs/architecture'
-      }
-    }
-  }
 ]
 
 const statusColors = {
@@ -876,30 +875,36 @@ function Projects() {
 
             {/* Modal Footer (Action Links) */}
             <footer className="flex flex-wrap items-center gap-3 border-t border-white/8 bg-black/10 px-6 py-4">
-              <a
-                href={activeProject.caseStudy.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="magnetic-btn inline-flex min-h-9 items-center gap-2 bg-[#1E5BC6] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#2a6ad4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
-              >
-                GitHub Repository
-              </a>
-              <a
-                href={activeProject.caseStudy.links.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="magnetic-btn inline-flex min-h-9 items-center gap-2 bg-[#DC052D] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#e8163d] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
-              >
-                Live Demo
-              </a>
-              <a
-                href={activeProject.caseStudy.links.diagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-9 items-center gap-2 border border-white/12 bg-white/[0.02] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white/60 uppercase transition-colors hover:border-white/20 hover:text-white"
-              >
-                Architecture Spec ↗
-              </a>
+              {activeProject.caseStudy.links.github && (
+                <a
+                  href={activeProject.caseStudy.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="magnetic-btn inline-flex min-h-9 items-center gap-2 bg-[#1E5BC6] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#2a6ad4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
+                >
+                  GitHub Repository
+                </a>
+              )}
+              {activeProject.caseStudy.links.live && (
+                <a
+                  href={activeProject.caseStudy.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="magnetic-btn inline-flex min-h-9 items-center gap-2 bg-[#DC052D] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#e8163d] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417]"
+                >
+                  Live Demo
+                </a>
+              )}
+              {activeProject.caseStudy.links.diagram && (
+                <a
+                  href={activeProject.caseStudy.links.diagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-9 items-center gap-2 border border-white/12 bg-white/[0.02] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white/60 uppercase transition-colors hover:border-white/20 hover:text-white"
+                >
+                  Architecture Spec ↗
+                </a>
+              )}
             </footer>
           </div>
         </div>,

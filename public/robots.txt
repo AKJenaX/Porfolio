@@ -1,7 +1,7 @@
 # robots.txt — Anup Kumar Jena Portfolio
-# https://your-domain.com
+# https://porfolio-anup.vercel.app
 
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://porfolio-anup.vercel.app/sitemap.xml
