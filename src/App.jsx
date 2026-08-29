@@ -7,6 +7,7 @@ import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
+import TimingTower from './components/TimingTower'
 import LoadingScreen from './components/LoadingScreen'
 import SectionDivider from './components/SectionDivider'
 import { Analytics } from '@vercel/analytics/react'
@@ -89,6 +90,7 @@ export default function App() {
       <Analytics />
       <LoadingScreen />
       <ScrollProgress />
+      <TimingTower />
       <Navbar />
       <main>
         <Hero />
