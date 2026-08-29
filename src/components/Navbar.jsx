@@ -9,7 +9,7 @@ const navigation = [
   { id: 'contact', label: 'PIT WALL RADIO' },
 ]
 
-function Navbar() {
+function Navbar({ onOpenCommandPalette }) {
   const [activeId, setActiveId] = useState('hero')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -134,18 +134,35 @@ function Navbar() {
           })}
         </div>
 
-        <button
-          type="button"
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          onClick={() => setIsMenuOpen((open) => !open)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-white/12 bg-white/[0.03] transition-[border-color,background-color] hover:border-[#DC052D]/70 hover:bg-[#DC052D]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] lg:hidden"
-        >
-          <span className={`h-px w-5 bg-white transition-transform duration-200 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
-          <span className={`h-px w-5 bg-[#DC052D] transition-opacity duration-200 ${isMenuOpen ? 'opacity-0' : ''}`} />
-          <span className={`h-px w-5 bg-white transition-transform duration-200 ${isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Race Control Command Palette Trigger Button */}
+          <button
+            type="button"
+            onClick={onOpenCommandPalette}
+            className="flex items-center gap-2 border border-white/12 bg-white/[0.03] px-2.5 py-1.5 font-mono text-[9px] font-bold tracking-wider text-white/70 transition-colors hover:border-[#DC052D]/60 hover:bg-white/[0.06] hover:text-white"
+            title="Open Command Palette (Ctrl+K / Cmd+K)"
+            aria-label="Open Race Control Command Palette"
+          >
+            <span className="text-[#F7D417]">⚡</span>
+            <span className="hidden sm:inline">COMMANDS</span>
+            <kbd className="rounded border border-white/15 bg-black/40 px-1 py-0.5 text-[8px] text-white/50">
+              Ctrl K
+            </kbd>
+          </button>
+
+          <button
+            type="button"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-white/12 bg-white/[0.03] transition-[border-color,background-color] hover:border-[#DC052D]/70 hover:bg-[#DC052D]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] lg:hidden"
+          >
+            <span className={`h-px w-5 bg-white transition-transform duration-200 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
+            <span className={`h-px w-5 bg-[#DC052D] transition-opacity duration-200 ${isMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`h-px w-5 bg-white transition-transform duration-200 ${isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
+          </button>
+        </div>
       </nav>
 
       <div

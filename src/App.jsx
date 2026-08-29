@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
@@ -8,10 +8,25 @@ import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
 import LoadingScreen from './components/LoadingScreen'
+import CommandPalette from './components/CommandPalette'
 import SectionDivider from './components/SectionDivider'
 import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        setIsCommandPaletteOpen((prev) => !prev)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 767px)').matches
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -89,7 +104,11 @@ export default function App() {
       <Analytics />
       <LoadingScreen />
       <ScrollProgress />
-      <Navbar />
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={() => setIsCommandPaletteOpen(false)}
+      />
+      <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
       <main>
         <Hero />
         <SectionDivider variant="red" />
