@@ -98,7 +98,7 @@ src/
 ## Key Sections
 
 ### Hero
-Dynamic entry sequence with real-time running lap timer, live status indicator, F1 driver identity label (#19), and core call-to-actions.
+Dynamic entry sequence with real-time running lap timer, live status indicator, F1 driver identity label (#22), and core call-to-actions.
 
 ### About
 Driver Profile card displaying professional status, educational affiliations, and quantitative metrics (projects deployed, tech stack size, lines of code written).
