@@ -1,26 +1,5 @@
 import useReveal from '../hooks/useReveal'
 
-const LED_LIGHTS = [
-  // 1-5: Low RPM Green
-  { id: 1, color: '#22C55E', shadow: 'rgba(34,197,94,0.9)' },
-  { id: 2, color: '#22C55E', shadow: 'rgba(34,197,94,0.9)' },
-  { id: 3, color: '#22C55E', shadow: 'rgba(34,197,94,0.9)' },
-  { id: 4, color: '#22C55E', shadow: 'rgba(34,197,94,0.9)' },
-  { id: 5, color: '#22C55E', shadow: 'rgba(34,197,94,0.9)' },
-  // 6-10: Mid RPM Red
-  { id: 6, color: '#DC052D', shadow: 'rgba(220,5,45,0.9)' },
-  { id: 7, color: '#DC052D', shadow: 'rgba(220,5,45,0.9)' },
-  { id: 8, color: '#DC052D', shadow: 'rgba(220,5,45,0.9)' },
-  { id: 9, color: '#DC052D', shadow: 'rgba(220,5,45,0.9)' },
-  { id: 10, color: '#DC052D', shadow: 'rgba(220,5,45,0.9)' },
-  // 11-15: Optimal Shift Point Purple/Blue
-  { id: 11, color: '#A855F7', shadow: 'rgba(168,85,247,0.9)' },
-  { id: 12, color: '#A855F7', shadow: 'rgba(168,85,247,0.9)' },
-  { id: 13, color: '#A855F7', shadow: 'rgba(168,85,247,0.9)' },
-  { id: 14, color: '#A855F7', shadow: 'rgba(168,85,247,0.9)' },
-  { id: 15, color: '#A855F7', shadow: 'rgba(168,85,247,0.9)' },
-]
-
 const skillGroups = [
   {
     name: 'ENGINE',
@@ -130,33 +109,6 @@ function Skills() {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
-      {/* Dynamic CSS styles for progressive F1 rev-limiter LED sequence */}
-      <style>{`
-        .shift-led {
-          transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-          opacity: 0.2;
-          background-color: #334155;
-        }
-        .skill-card:hover .shift-led {
-          opacity: 1;
-        }
-        .skill-card:hover .shift-led-1 { transition-delay: 30ms; background-color: #22C55E; box-shadow: 0 0 6px #22C55E; }
-        .skill-card:hover .shift-led-2 { transition-delay: 60ms; background-color: #22C55E; box-shadow: 0 0 6px #22C55E; }
-        .skill-card:hover .shift-led-3 { transition-delay: 90ms; background-color: #22C55E; box-shadow: 0 0 6px #22C55E; }
-        .skill-card:hover .shift-led-4 { transition-delay: 120ms; background-color: #22C55E; box-shadow: 0 0 6px #22C55E; }
-        .skill-card:hover .shift-led-5 { transition-delay: 150ms; background-color: #22C55E; box-shadow: 0 0 6px #22C55E; }
-        .skill-card:hover .shift-led-6 { transition-delay: 180ms; background-color: #DC052D; box-shadow: 0 0 6px #DC052D; }
-        .skill-card:hover .shift-led-7 { transition-delay: 210ms; background-color: #DC052D; box-shadow: 0 0 6px #DC052D; }
-        .skill-card:hover .shift-led-8 { transition-delay: 240ms; background-color: #DC052D; box-shadow: 0 0 6px #DC052D; }
-        .skill-card:hover .shift-led-9 { transition-delay: 270ms; background-color: #DC052D; box-shadow: 0 0 6px #DC052D; }
-        .skill-card:hover .shift-led-10 { transition-delay: 300ms; background-color: #DC052D; box-shadow: 0 0 6px #DC052D; }
-        .skill-card:hover .shift-led-11 { transition-delay: 330ms; background-color: #A855F7; box-shadow: 0 0 8px #A855F7; }
-        .skill-card:hover .shift-led-12 { transition-delay: 360ms; background-color: #A855F7; box-shadow: 0 0 8px #A855F7; }
-        .skill-card:hover .shift-led-13 { transition-delay: 390ms; background-color: #A855F7; box-shadow: 0 0 8px #A855F7; }
-        .skill-card:hover .shift-led-14 { transition-delay: 420ms; background-color: #A855F7; box-shadow: 0 0 8px #A855F7; }
-        .skill-card:hover .shift-led-15 { transition-delay: 450ms; background-color: #A855F7; box-shadow: 0 0 8px #A855F7; }
-      `}</style>
-
       {/* Section sweep calibration line */}
       {isVisible && (
         <div className="section-sweep-line" style={{ '--sweep-color': '#1E5BC6' }} />
@@ -198,28 +150,6 @@ function Skills() {
               />
 
               <header className="pb-4" style={{ borderBottom: `2px solid ${accent}` }}>
-                {/* 15-LED Formula 1 Rev-Limiter / Shift Light Bar */}
-                <div className="mb-3 flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2">
-                  {/* Shift Lights Array */}
-                  <div className="flex items-center gap-1">
-                    {LED_LIGHTS.map((led) => (
-                      <span
-                        key={led.id}
-                        className={`shift-led shift-led-${led.id} h-1.5 w-1.5 rounded-full sm:h-2 sm:w-2`}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Telemetry RPM Status badge */}
-                  <div className="font-mono text-[8px] tracking-wider uppercase text-white/40 group-hover:text-[#F7D417] transition-colors">
-                    <span className="group-hover:hidden">RPM // IDLE 4,200</span>
-                    <span className="hidden group-hover:inline font-bold text-[#A855F7] animate-pulse">
-                      15,000 RPM // SHIFT POINT
-                    </span>
-                  </div>
-                </div>
-
                 <div className="flex items-start gap-3">
                   <span className="text-xl leading-none" aria-hidden="true">{icon}</span>
                   <div>
