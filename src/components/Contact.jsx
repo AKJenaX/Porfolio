@@ -8,6 +8,12 @@ const contactItems = [
     accent: '#DC052D',
   },
   {
+    label: 'PHONE',
+    value: '+91 8260779661',
+    href: 'tel:+918260779661',
+    accent: '#22c55e',
+  },
+  {
     label: 'GITHUB',
     value: 'github.com/AKJenaX',
     href: 'https://github.com/AKJenaX',
@@ -26,7 +32,7 @@ const contactItems = [
   },
   {
     label: 'RESUME',
-    value: 'View Resume',
+    value: 'View Resume (PDF)',
     href: '/resume.pdf',
     accent: '#F7D417',
   },
@@ -34,11 +40,11 @@ const contactItems = [
 
 const telemetryItems = [
   { label: 'STATUS', value: 'AVAILABLE FOR OPPORTUNITIES', accent: '#22c55e' },
-  { label: 'PRIMARY ROLE', value: 'BACKEND ENGINEER', accent: '#DC052D' },
-  { label: 'SECONDARY ROLE', value: 'FULL STACK DEVELOPER', accent: '#1E5BC6' },
-  { label: 'CURRENT FOCUS', value: 'PYTHON • AI • CLOUD', accent: '#F7D417' },
+  { label: 'PRIMARY ROLE', value: 'BACKEND & FULL-STACK', accent: '#DC052D' },
+  { label: 'SPECIALIZATION', value: 'CYBERSECURITY & IOT', accent: '#1E5BC6' },
+  { label: 'CURRENT FOCUS', value: 'PYTHON • FASTAPI • AI', accent: '#F7D417' },
   { label: 'RESPONSE TIME', value: '< 24 HOURS', accent: '#1E5BC6' },
-  { label: 'OPEN SOURCE', value: 'ACTIVE', accent: '#22c55e' },
+  { label: 'OPEN SOURCE', value: 'ACTIVE (GITHUB)', accent: '#22c55e' },
 ]
 
 function ContactCard({ item }) {
@@ -62,7 +68,7 @@ function ContactCard({ item }) {
     </>
   )
   const className =
-    `cursor-glow contact-card group relative block min-w-0 overflow-hidden border border-white/8 bg-[#091430] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] sm:p-5 ${isResume ? 'sm:col-span-2' : ''}`
+    'cursor-glow contact-card group relative block min-w-0 overflow-hidden border border-white/8 bg-[#091430] p-4 transition-[transform,border-color,box-shadow] duration-300 hover:border-[var(--contact-accent)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7D417] sm:p-5'
   const style = {
     '--contact-accent': accent,
     backgroundImage:

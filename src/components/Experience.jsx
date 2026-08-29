@@ -2,53 +2,63 @@ import useReveal from '../hooks/useReveal'
 
 const timelineEntries = [
   {
-    season: '2023 – Present',
-    title: 'B.Tech Computer Science Engineering (IoT & Cybersecurity)',
-    organization: 'Cambridge Institute of Technology',
+    season: '2023 – 2027',
+    title: 'B.Tech Computer Science and Engineering (IoT & Cybersecurity)',
+    organization: 'Cambridge Institute of Technology, Bengaluru',
     status: 'ACTIVE',
     description:
-      'Focused on cybersecurity, IoT systems, Linux, networking, distributed systems, backend engineering, Android development, and cloud-native technologies.',
+      'Specialization in IoT Systems, Cybersecurity, Linux, Computer Networking, and Distributed Systems.',
     accent: '#DC052D',
   },
   {
+    season: '2026',
     title: 'OpenEnv India 2026',
+    organization: 'OpenEnv Nationwide Hackathon',
     status: 'TOP 800 / 31,000+',
-    description: 'Ranked among the top 800 teams nationwide during OpenEnv India 2026.',
+    description: 'Ranked Top 800 among 31,000+ participating teams nationwide; built TaskMesh (RL-based distributed scheduler).',
     accent: '#1E5BC6',
   },
   {
-    title: 'INNOVEX 2.0',
+    season: '2025',
+    title: 'INNOVEX 2.0 Technical Innovation Competition',
+    organization: 'INNOVEX 2.0',
     status: '2ND PRIZE WINNER',
-    description: 'Recognized for technical innovation and practical engineering execution.',
+    description: 'Awarded 2nd prize for technical innovation and practical engineering execution.',
     accent: '#F7D417',
   },
   {
+    season: 'FEB 2026',
     title: 'Copado Certified AI Professional',
+    organization: 'Copado Certification',
     status: 'CERTIFIED',
-    description: 'Professional certification covering AI-assisted automation and DevOps workflows.',
+    description: 'DevOps and AI automation certification covering automated pipelines and AI-assisted workflows.',
     accent: '#1E5BC6',
   },
   {
-    title: 'IBM AI Literacy',
+    season: '2025',
+    title: 'IBM AI Literacy Certified',
+    organization: 'IBM Certification',
     status: 'CERTIFIED',
-    description: 'Completed foundational AI and responsible AI learning program.',
+    description: 'Certified in foundational AI concepts, machine learning principles, and responsible AI practices.',
     accent: '#DC052D',
   },
   {
-    title: 'Meta OpenEnv Hackathon',
-    status: 'PARTICIPANT',
-    description: 'Built TaskMesh, a reinforcement-learning-based distributed task scheduling platform.',
+    season: '2024',
+    title: 'Samsung Innovation Campus',
+    organization: 'Samsung Innovation Campus Training',
+    status: 'BACKEND LEAD',
+    description: 'Led backend development on a 4-person team building the HydroSense real-time IoT water monitoring platform.',
     accent: '#1E5BC6',
   },
 ]
 
 const telemetry = [
-  { label: 'PROJECTS BUILT', value: '5+', accent: '#DC052D' },
+  { label: 'FEATURED PROJECTS', value: '4', accent: '#DC052D' },
   { label: 'TECH STACKS', value: '20+', accent: '#1E5BC6' },
-  { label: 'YEARS CODING', value: '3+', accent: '#1E5BC6' },
+  { label: 'DEGREE', value: 'B.TECH (2027)', accent: '#1E5BC6' },
   { label: 'CURRENT STATUS', value: 'BUILDING FAST', accent: '#F7D417' },
-  { label: 'PRIMARY FOCUS', value: 'BACKEND + ANDROID', accent: '#DC052D' },
-  { label: 'NEXT TARGET', value: 'GO + SYSTEM DESIGN', accent: '#1E5BC6' },
+  { label: 'PRIMARY FOCUS', value: 'BACKEND + AI', accent: '#DC052D' },
+  { label: 'NEXT TARGET', value: 'GO + DISTRIBUTED', accent: '#1E5BC6' },
 ]
 
 function Experience() {
