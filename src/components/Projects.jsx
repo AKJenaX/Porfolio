@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import useReveal from '../hooks/useReveal'
+import ProjectArchitectureFlow from './projectflow/ProjectArchitectureFlow'
 
 const projects = [
   {
@@ -794,13 +795,13 @@ function Projects() {
                     </div>
                   </div>
 
-                  {/* System Architecture Diagram */}
+                  {/* System Architecture Diagram (Interactive Animated SVG Flow) */}
                   <div>
-                    <h4 className="font-mono text-[10px] font-bold tracking-[0.22em] text-white/30 uppercase">02 / PIPELINE ARCHITECTURE</h4>
+                    <h4 className="font-mono text-[10px] font-bold tracking-[0.22em] text-white/30 uppercase">
+                      02 / PIPELINE ARCHITECTURE (INTERACTIVE TELEMETRY)
+                    </h4>
                     <div className="relative mt-3">
-                      <pre className="font-mono text-[8px] sm:text-[10px] leading-tight bg-black/50 p-4 overflow-x-auto text-[#22c55e] border border-white/8 whitespace-pre">
-                        {activeProject.caseStudy.architecture.diagram.trim()}
-                      </pre>
+                      <ProjectArchitectureFlow projectName={activeProject.name} />
                     </div>
                   </div>
 
