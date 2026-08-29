@@ -7,6 +7,7 @@ const stats = [
   { label: 'CURRENT LAP', value: '2023–2027', accent: '#F7D417' },
 ]
 
+// Driver profile telemetry component
 function About() {
   const [sectionRef, isVisible] = useReveal()
 
