@@ -1,4 +1,7 @@
+import { useState, lazy, Suspense } from 'react'
 import useReveal from '../hooks/useReveal'
+
+const PowerUnitScene = lazy(() => import('./skills3d/PowerUnitScene'))
 
 const skillGroups = [
   {
@@ -99,6 +102,7 @@ const skillGroups = [
 
 function Skills() {
   const [sectionRef, isVisible] = useReveal()
+  const [activeGroup, setActiveGroup] = useState('ENGINE')
 
   return (
     <section
@@ -125,59 +129,73 @@ function Skills() {
           <span className="text-[#DC052D]">03</span> — TECHNICAL SPECIFICATIONS
         </p>
         <h2 id="skills-heading" className="mt-5 max-w-3xl text-xl leading-relaxed font-medium text-white/65 sm:text-2xl">
-          Every championship car is built on a precise set of components. Here&apos;s mine.
+          Every championship car is built on a precise set of components. Explore the 3D telemetry core below.
         </h2>
 
-        <div className={`stagger-children mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6 ${isVisible ? 'is-visible' : ''}`}>
-          {skillGroups.map(({ name, title, icon, accent, skills }) => (
-            <article
-              key={name}
-              className="cursor-glow skill-card group relative overflow-hidden border border-white/8 bg-[#091430] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.25)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-white/15 hover:shadow-[0_22px_50px_rgba(0,0,0,0.35)] sm:p-7"
-              style={{
-                backgroundImage:
-                  'linear-gradient(135deg, rgba(255,255,255,0.02), transparent 55%), repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(30,91,198,0.025) 0px, rgba(30,91,198,0.025) 1px, transparent 1px, transparent 6px)',
-              }}
-            >
-              {/* Left accent bar — grows on hover */}
-              <div
-                aria-hidden="true"
-                className="absolute top-0 left-0 w-0.5 transition-all duration-500 ease-out group-hover:h-full"
+        {/* 3D Interactive Power Unit Telemetry Viewport */}
+        <div className="mt-10">
+          <Suspense fallback={<div className="h-80 w-full animate-pulse rounded border border-white/8 bg-[#091430]/60 lg:h-96" />}>
+            <PowerUnitScene activeGroup={activeGroup} />
+          </Suspense>
+        </div>
+
+        <div className={`stagger-children mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6 ${isVisible ? 'is-visible' : ''}`}>
+          {skillGroups.map(({ name, title, icon, accent, skills }) => {
+            const isCardActive = activeGroup === name
+            return (
+              <article
+                key={name}
+                onMouseEnter={() => setActiveGroup(name)}
+                onClick={() => setActiveGroup(name)}
+                className={`cursor-glow skill-card group relative cursor-pointer overflow-hidden border bg-[#091430] p-5 shadow-[0_18px_45px_rgba(0,0,0,0.25)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:shadow-[0_22px_50px_rgba(0,0,0,0.35)] sm:p-7 ${
+                  isCardActive ? 'border-white/30 scale-[1.01]' : 'border-white/8 hover:border-white/20'
+                }`}
                 style={{
-                  backgroundColor: accent,
-                  height: '4rem',
-                  boxShadow: `0 0 8px ${accent}44`,
+                  backgroundImage:
+                    'linear-gradient(135deg, rgba(255,255,255,0.02), transparent 55%), repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(-45deg, rgba(30,91,198,0.025) 0px, rgba(30,91,198,0.025) 1px, transparent 1px, transparent 6px)',
                 }}
-              />
+              >
+                {/* Left accent bar — grows on hover */}
+                <div
+                  aria-hidden="true"
+                  className="absolute top-0 left-0 w-0.5 transition-all duration-500 ease-out group-hover:h-full"
+                  style={{
+                    backgroundColor: accent,
+                    height: '4rem',
+                    boxShadow: `0 0 8px ${accent}44`,
+                  }}
+                />
 
-              <header className="pb-4" style={{ borderBottom: `2px solid ${accent}` }}>
-                <div className="flex items-start gap-3">
-                  <span className="text-xl leading-none" aria-hidden="true">{icon}</span>
-                  <div>
-                    <h3 className="font-mono text-sm font-black tracking-[0.2em] uppercase sm:text-base" style={{ color: accent }}>
-                      {name}
-                    </h3>
-                    <p className="mt-1 text-xs font-semibold tracking-[0.12em] text-white/45 uppercase sm:text-sm">{title}</p>
+                <header className="pb-4" style={{ borderBottom: `2px solid ${accent}` }}>
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl leading-none" aria-hidden="true">{icon}</span>
+                    <div>
+                      <h3 className="font-mono text-sm font-black tracking-[0.2em] uppercase sm:text-base" style={{ color: accent }}>
+                        {name}
+                      </h3>
+                      <p className="mt-1 text-xs font-semibold tracking-[0.12em] text-white/45 uppercase sm:text-sm">{title}</p>
+                    </div>
                   </div>
-                </div>
-              </header>
+                </header>
 
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border bg-[#060B26] px-3 py-1 text-xs font-bold tracking-wider uppercase transition-[box-shadow,background-color] duration-200 hover:bg-white/[0.025] hover:shadow-[0_0_10px_var(--skill-accent)]"
-                    style={{
-                      '--skill-accent': accent,
-                      borderColor: accent,
-                      color: accent,
-                    }}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border bg-[#060B26] px-3 py-1 text-xs font-bold tracking-wider uppercase transition-[box-shadow,background-color] duration-200 hover:bg-white/[0.025] hover:shadow-[0_0_10px_var(--skill-accent)]"
+                      style={{
+                        '--skill-accent': accent,
+                        borderColor: accent,
+                        color: accent,
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>
